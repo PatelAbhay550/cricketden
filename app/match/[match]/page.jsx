@@ -325,26 +325,7 @@ const page = async ({ params }) => {
           )}
         </div>
 
-        <div className="bg-background p-4 md:p-8">
-          <h3 className="text-xl md:text-2xl font-semibold mb-4">
-            Commentary (Inning {currentInning})
-          </h3>
-          <div className="border-t border-gray-300 pt-4">
-            {validCommentary.length > 0 ? (
-              validCommentary.map((entry, index) => (
-                <div key={index} className="mb-4">
-                  <p className="text-lg font-semibold text-primary">
-                    Over {entry.Over}: {entry.Batsman_Name} vs{" "}
-                    {entry.Bowler_Name}
-                  </p>
-                  <p className="text-gray-700">{entry.Ball_Event}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-700">No commentary available.</p>
-            )}
-          </div>
-        </div>
+        
         <div className="bg-background p-8">
           <h3 className="text-2xl font-semibold mb-4">
             Commentary (Inning {currentInning})
