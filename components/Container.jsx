@@ -3,10 +3,26 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { TbLiveView } from "react-icons/tb";
 import Link from "next/link";
+
 const HomePage = async () => {
+  // Get current date and date 5 days later in the required format (YYYYMMDD)
+  const currentDate = new Date();
+  const futureDate = new Date();
+  futureDate.setDate(currentDate.getDate() + 5);
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}${month}${day}`;
+  };
+
+  const formattedCurrentDate = formatDate(currentDate);
+  const formattedFutureDate = formatDate(futureDate);
+
   const res = await fetch(
     "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20240821&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=20240821&timezone=0530",
-    { next: { revalidate: 10 } } // Enables caching and revalidation after 10 seconds
+    { next: { revalidate: 10 } }
   );
 
   if (!res.ok) {
@@ -23,13 +39,18 @@ const HomePage = async () => {
         match.live === true || match.match_status.toLowerCase() === "stumps"
     )
     .slice(0, 3);
+
   const up = await fetch(
-    "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20240821is_upcoming=true&lang=en&league_ids=1%2C9&page_number=1&page_size=20&pagination=true&timezone=0530&to_date=20240925&timezone=0530"
+    `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedCurrentDate}&is_upcoming=true&lang=en&league_ids=1%2C9&page_number=1&page_size=20&pagination=true&timezone=0530&to_date=${formattedFutureDate}&timezone=0530`
   );
+  
+  if (!up.ok) {
+    throw new Error("Failed to fetch upcoming matches");
+  }
+  
   const updata = await up.json();
 
   // Filter for upcoming matches
-
   const upcomingMatches = updata.data.matches
     .filter((match) => match.upcoming === true)
     .slice(0, 3); // Get only the top 4 matches
