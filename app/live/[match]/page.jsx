@@ -96,6 +96,19 @@ const page = async ({ params }) => {
 
   const currentInning = match.current_innings;
 
+  // Fetch scorecard data
+  const scorecardRes = await fetch(
+    `https://assets-icc.sportz.io/cricket/v1/game/scorecard?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&game_id=${matchId}&lang=en`
+  );
+
+  if (!scorecardRes.ok) {
+    throw new Error("Failed to fetch scorecard");
+  }
+
+  const scorecardData = await scorecardRes.json();
+
+  const scorecard = scorecardData?.data?.Innings || [];
+  const teams = scorecardData?.data?.Teams || {};
   // Fetch commentary data for the current inning
   const commentaryRes = await fetch(
     `https://assets-icc.sportz.io/cricket/v1/game/commentary?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&game_id=${matchId}&inning=${currentInning}&lang=en&page_number=1&page_size=20`
@@ -116,7 +129,13 @@ const page = async ({ params }) => {
       entry.Bowler_Name &&
       entry.Runs !== undefined
   );
-
+  const getBatsmanName = (batsmanId, teamId) => {
+    const team = teams[teamId];
+    if (team && team.Players && team.Players[batsmanId]) {
+      return team.Players[batsmanId].Name_Full;
+    }
+    return "Unknown Batsman";
+  };
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
@@ -146,17 +165,71 @@ const page = async ({ params }) => {
             </div>
           ))}
         </div>
+
+        <div className="bg-background p-8">
+          <h3 className="text-2xl font-semibold mb-4">
+            First Innings Scorecard
+          </h3>
+          {scorecard.length > 0 ? (
+            scorecard.map((inning, index) => (
+              <div key={index} className="border-t border-gray-300 pt-4">
+                <h4 className="text-xl font-semibold text-primary mb-2">
+                  Batting Team: {inning.Battingteam}
+                </h4>
+                <p className="text-lg text-gray-700 mb-2">
+                  <strong>Total:</strong> {inning.Total}/{inning.Wickets} in{" "}
+                  {inning.Overs} overs
+                </p>
+                <p className="text-lg text-gray-700 mb-2">
+                  <strong>Run Rate:</strong> {inning.Runrate}
+                </p>
+                <table className="w-full text-left table-fixed">
+                  <thead>
+                    <tr>
+                      <th className="w-1/4 px-4 py-2">Batsman</th>
+                      <th className="w-1/4 px-4 py-2">Runs</th>
+                      <th className="w-1/4 px-4 py-2">Balls</th>
+                      <th className="w-1/4 px-4 py-2">Strike Rate</th>
+                      <th className="w-1/4 px-4 py-2">Dismissal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {inning.Batsmen.map((batsman, bIndex) => (
+                      <tr key={bIndex}>
+                        <td className="border px-4 py-2">
+                          {" "}
+                          {getBatsmanName(batsman.Batsman, inning.Battingteam)}
+                        </td>
+                        <td className="border px-4 py-2">{batsman.Runs}</td>
+                        <td className="border px-4 py-2">{batsman.Balls}</td>
+                        <td className="border px-4 py-2">
+                          {batsman.Strikerate}
+                        </td>
+                        <td className="border px-4 py-2">{batsman.Howout}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-700">No scorecard available.</p>
+          )}
+        </div>
+
         <div className="bg-background p-8">
           <h3 className="text-2xl font-semibold mb-4">
             Commentary (Inning {currentInning})
           </h3>
           <div className="border-t border-gray-300 pt-4">
             {validCommentary.length > 0 ? (
-              commentary.map((entry, index) => (
+              validCommentary.map((entry, index) => (
                 <div key={index} className="mb-4">
-                  <p className="text-lg text-gray-700">
-                    <strong>{entry.Over}</strong>:{entry.Commentary}
+                  <p className="text-lg font-semibold text-primary">
+                    Over {entry.Over}: {entry.Batsman_Name} vs{" "}
+                    {entry.Bowler_Name}
                   </p>
+                  <p className="text-gray-700">{entry.Ball_Event}</p>
                 </div>
               ))
             ) : (
@@ -164,28 +237,23 @@ const page = async ({ params }) => {
             )}
           </div>
         </div>
-        <div className="p-8">
-          <h2 className="text-3xl font-bold text-center mb-4">Match Details</h2>
-          <p className="text-lg text-gray-700 mb-4">
-            <strong>Match:</strong> {match.teama} vs {match.teamb}
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            <strong>Date:</strong> {formattedDate}
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            <strong>Time:</strong> {formattedTime}
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            <strong>Venue:</strong> {match.venue}
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            <strong>Status:</strong> {match.match_status}
-          </p>
-          {match.match_result && (
-            <p className="text-lg text-gray-700 mb-4">
-              <strong>Result:</strong> {match.match_result}
+
+        <div className="bg-background p-8">
+          <h3 className="text-2xl font-semibold mb-4">Match Details</h3>
+          <div className="text-gray-700">
+            <p>
+              <strong>Venue:</strong> {match.venue}
             </p>
-          )}
+            <p>
+              <strong>Date:</strong> {formattedDate} at {formattedTime}
+            </p>
+            <p>
+              <strong>Team A:</strong> {match.teama}
+            </p>
+            <p>
+              <strong>Team B:</strong> {match.teamb}
+            </p>
+          </div>
         </div>
       </div>
     </div>
