@@ -189,10 +189,13 @@ const page = async ({ params }) => {
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div className="bg-gradient-to-r from-primary to-secondary p-6">
-          <h2 className="text-3xl font-bold text-white">{match.series_name}</h2>
+          <h1 className="text-3xl font-bold text-white">{match.series_name}</h1>
         </div>
-
+        
         <div className="bg-background p-8">
+          <h2 className="bg-rose-800 px-3 py-2 text-zinc-100 text-lg mb-3 font-bold">
+            {match.match_status}
+          </h2>
           <h3 className="text-2xl font-semibold mb-4">Scores</h3>
           {match.scores.map((inning, index) => (
             <div key={index} className="mb-6">
