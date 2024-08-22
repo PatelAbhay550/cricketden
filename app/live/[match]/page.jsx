@@ -137,6 +137,13 @@ const page = async ({ params }) => {
     }
     return "Unknown Batsman";
   };
+  const getBowlerName = (bowlerId, teamId) => {
+    const team = teams[teamId];
+    if (team && team.Players && team.Players[bowlerId]) {
+      return team.Players[bowlerId].Name_Full;
+    }
+    return "Unknown Batsman";
+  };
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
@@ -184,7 +191,7 @@ const page = async ({ params }) => {
                 <p className="text-lg text-gray-700 mb-2">
                   <strong>Run Rate:</strong> {inning.Runrate}
                 </p>
-                <table className="w-full text-left table-fixed">
+                <table className="w-full text-left table-auto">
                   <thead>
                     <tr>
                       <th className="w-1/4 px-4 py-2">Batsman</th>
@@ -217,7 +224,86 @@ const page = async ({ params }) => {
             <p className="text-gray-700">No scorecard available.</p>
           )}
         </div>
+        {/* Bowling Table */}
+        <div className="bg-background p-4 md:p-8">
+          <h3 className="text-xl md:text-2xl font-semibold mb-4">
+            Bowling Scorecard
+          </h3>
+          {scorecard.length > 0 ? (
+            scorecard.map((inning, index) => (
+              <div key={index} className="border-t border-gray-300 pt-4">
+                <h4 className="text-lg md:text-xl font-semibold text-primary mb-2">
+                  {teams[inning.Bowlingteam]?.Name_Full || "Unknown Team"}
+                </h4>
+                <table className="w-full text-left table-auto">
+                  <thead>
+                    <tr>
+                      <th className="px-2 py-2 text-sm md:text-base">Bowler</th>
+                      <th className="px-2 py-2 text-sm md:text-base">Overs</th>
+                      <th className="px-2 py-2 text-sm md:text-base">
+                        Maidens
+                      </th>
+                      <th className="px-2 py-2 text-sm md:text-base">Runs</th>
+                      <th className="px-2 py-2 text-sm md:text-base">
+                        Wickets
+                      </th>
+                      <th className="px-2 py-2 text-sm md:text-base">
+                        Economy
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {inning.Bowlers.map((bowler, bIndex) => (
+                      <tr key={bIndex} className="border-b">
+                        <td className="px-2 py-2 text-sm md:text-base">
+                          {getBowlerName(bowler.Bowler, inning.Bowlingteam)}
+                        </td>
+                        <td className="px-2 py-2 text-sm md:text-base">
+                          {bowler.Overs}
+                        </td>
+                        <td className="px-2 py-2 text-sm md:text-base">
+                          {bowler.Maidens}
+                        </td>
+                        <td className="px-2 py-2 text-sm md:text-base">
+                          {bowler.Runs}
+                        </td>
+                        <td className="px-2 py-2 text-sm md:text-base">
+                          {bowler.Wickets}
+                        </td>
+                        <td className="px-2 py-2 text-sm md:text-base">
+                          {bowler.Economyrate}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-700">No bowling scorecard available.</p>
+          )}
+        </div>
 
+        <div className="bg-background p-4 md:p-8">
+          <h3 className="text-xl md:text-2xl font-semibold mb-4">
+            Commentary (Inning {currentInning})
+          </h3>
+          <div className="border-t border-gray-300 pt-4">
+            {validCommentary.length > 0 ? (
+              validCommentary.map((entry, index) => (
+                <div key={index} className="mb-4">
+                  <p className="text-lg font-semibold text-primary">
+                    Over {entry.Over}: {entry.Batsman_Name} vs{" "}
+                    {entry.Bowler_Name}
+                  </p>
+                  <p className="text-gray-700">{entry.Ball_Event}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-700">No commentary available.</p>
+            )}
+          </div>
+        </div>
         <div className="bg-background p-8">
           <h3 className="text-2xl font-semibold mb-4">
             Commentary (Inning {currentInning})
