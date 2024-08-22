@@ -38,9 +38,9 @@ const Header = () => {
         <nav
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } md:flex  space-x-6 text-lg absolute md:relative left-0 top-full md:top-auto bg-primary md:bg-transparent w-full md:w-auto p-4 md:p-0 shadow-lg md:shadow-none`}
+          } md:flex md:space-x-6 text-lg absolute md:relative left-0 top-full md:top-auto bg-primary md:bg-transparent w-full md:w-auto p-4 md:p-0 shadow-lg md:shadow-none z-10`}
         >
-          <ul className="md:flex space-y-4 md:space-y-0 md:gap-5">
+          <ul className="space-y-4 md:space-y-0 md:flex md:gap-5">
             <li className="hover:text-accent transition duration-300 cursor-pointer">
               Schedule
             </li>
@@ -68,7 +68,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Search Bar */}
-      <div className="md:hidden mt-4">
+      <div className={`${isMenuOpen ? "block" : "hidden"} md:hidden mt-4`}>
         <div className="relative">
           <input
             type="text"
