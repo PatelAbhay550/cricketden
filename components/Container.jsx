@@ -79,7 +79,7 @@ const HomePage = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {liveMatches.length > 0 ? (
             liveMatches.map((match) => (
-              <Link key={match.match_id} href={`/live/${match.match_id}`}>
+              <Link key={match.match_id} href={`/match/${match.match_id}`}>
                 <div className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 text-sm">
                   <div className="text-center mb-2">
                     <h3 className="text-[12px] font-bold text-indigo-500">
@@ -127,7 +127,7 @@ const HomePage = async () => {
             ))
           ) : (
             <p className="text-center text-gray-500">
-              No live or stumps matches available at the moment.
+              No live matches available at the moment.
             </p>
           )}
         </div>
@@ -182,42 +182,44 @@ const HomePage = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {EndedMatches.length > 0 ? (
             EndedMatches.map((match) => (
-              <div
-                key={match.match_id}
-                className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 text-sm"
-              >
-                <div className="text-center mb-2">
-                  <h3 className="text-md font-bold text-indigo-500">
-                    {match.series_name}
-                  </h3>
-                  <p className="text-gray-500 text-xs">{match.venue}</p>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <div className="text-center">
-                    <h3 className="text-lg font-semibold">
-                      {match.teama_display_name}
-                      <br />
-                      {match.scores[0].team_runs}
+              <Link key={match.match_id} href={`/match/${match.match_id}`}>
+                <div
+                  key={match.match_id}
+                  className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 text-sm"
+                >
+                  <div className="text-center mb-2">
+                    <h3 className="text-md font-bold text-indigo-500">
+                      {match.series_name}
                     </h3>
+                    <p className="text-gray-500 text-xs">{match.venue}</p>
                   </div>
-                  <div className="text-md font-bold">VS</div>
-                  <div className="text-center">
-                    <h3 className="text-lg font-semibold">
-                      {match.teamb_display_name}
-                      <br />
-                      {match.scores[1].team_runs}
-                    </h3>
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="text-center">
+                      <h3 className="text-lg font-semibold">
+                        {match.teama_display_name}
+                        <br />
+                        {match.scores[0].team_runs}
+                      </h3>
+                    </div>
+                    <div className="text-md font-bold">VS</div>
+                    <div className="text-center">
+                      <h3 className="text-lg font-semibold">
+                        {match.teamb_display_name}
+                        <br />
+                        {match.scores[1].team_runs}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="text-center mt-2">
+                    <p className="text-gray-600 text-xs">
+                      Match Status: {match.match_result}
+                    </p>
+                    <p className="text-red-500 font-semibold text-xs">
+                      {match.match_start_date_time} (IST)
+                    </p>
                   </div>
                 </div>
-                <div className="text-center mt-2">
-                  <p className="text-gray-600 text-xs">
-                    Match Status: {match.match_result}
-                  </p>
-                  <p className="text-red-500 font-semibold text-xs">
-                    {match.match_start_date_time} (IST)
-                  </p>
-                </div>
-              </div>
+              </Link>
             ))
           ) : (
             <p className="text-center text-gray-500">
