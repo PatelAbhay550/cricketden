@@ -325,7 +325,6 @@ const page = async ({ params }) => {
           )}
         </div>
 
-        
         <div className="bg-background p-8">
           <h3 className="text-2xl font-semibold mb-4">
             Commentary (Inning {currentInning})
@@ -335,8 +334,8 @@ const page = async ({ params }) => {
               validCommentary.map((entry, index) => (
                 <div key={index} className="mb-4">
                   <p className="text-lg font-semibold text-primary">
-                    Over {entry.Over}: {entry.Batsman_Name} vs{" "}
-                    {entry.Bowler_Name}
+                    Over {entry.Over}: {entry.Batsman_Name} to{" "}
+                    {entry.Bowler_Name} -{entry.Commentary}
                   </p>
                   <p className="text-gray-700">{entry.Ball_Event}</p>
                 </div>
