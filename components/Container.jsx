@@ -19,9 +19,11 @@ const HomePage = async () => {
 
   const formattedCurrentDate = formatDate(currentDate);
   const formattedFutureDate = formatDate(futureDate);
-
+  const oneDayBeforeCurrentDate = new Date(currentDate);
+  oneDayBeforeCurrentDate.setDate(currentDate.getDate() - 1);
+  const formattedOneDayBeforeDate = formatDate(oneDayBeforeCurrentDate);
   const res = await fetch(
-    "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20240821&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=20240821&timezone=0530",
+    `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedOneDayBeforeDate}&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=${formattedCurrentDate}&timezone=0530`,
     { next: { revalidate: 10 } }
   );
 
@@ -34,11 +36,8 @@ const HomePage = async () => {
 
   // Filter for live and stumps matches
   const liveMatches = matches
-    .filter(
-      (match) =>
-        match.live === true || match.match_status.toLowerCase() === "stumps"
-    )
-    .slice(0, 3);
+    .filter((match) => match.live === true)
+    .slice(0, 6);
 
   const up = await fetch(
     `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedCurrentDate}&is_upcoming=true&lang=en&league_ids=1%2C9&page_number=1&page_size=20&pagination=true&timezone=0530&to_date=${formattedFutureDate}&timezone=0530`
@@ -55,9 +54,6 @@ const HomePage = async () => {
     .filter((match) => match.upcoming === true)
     .slice(0, 3);
   // Calculate the from_date for the prev request
-  const oneDayBeforeCurrentDate = new Date(currentDate);
-  oneDayBeforeCurrentDate.setDate(currentDate.getDate() - 1);
-  const formattedOneDayBeforeDate = formatDate(oneDayBeforeCurrentDate);
 
   const prev = await fetch(
     `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedOneDayBeforeDate}&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=${formattedCurrentDate}&timezone=0530`
@@ -86,7 +82,7 @@ const HomePage = async () => {
               <Link key={match.match_id} href={`/live/${match.match_id}`}>
                 <div className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 text-sm">
                   <div className="text-center mb-2">
-                    <h3 className="text-md font-bold text-indigo-500">
+                    <h3 className="text-[12px] font-bold text-indigo-500">
                       {match.series_name}
                     </h3>
                     <p className="text-gray-500 text-xs">{match.venue}</p>
