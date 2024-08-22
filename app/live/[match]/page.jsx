@@ -67,7 +67,7 @@ const page = async ({ params }) => {
 
   // Fetch match details
   const matchRes = await fetch(
-    "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20240821&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=20240821&timezone=0530",
+    "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20200820&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=20340829&timezone=0530",
     { next: { revalidate: 10 } }
   );
 
@@ -109,7 +109,7 @@ const page = async ({ params }) => {
 
   const scorecard = scorecardData?.data?.Innings || [];
   const teams = scorecardData?.data?.Teams || {};
-  console.log(teams);
+
   // Fetch commentary data for the current inning
   const commentaryRes = await fetch(
     `https://assets-icc.sportz.io/cricket/v1/game/commentary?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&game_id=${matchId}&inning=${currentInning}&lang=en&page_number=1&page_size=20`
