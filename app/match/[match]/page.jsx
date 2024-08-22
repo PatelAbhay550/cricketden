@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export async function generateMetadata({ params }) {
   const { match: matchId } = params;
