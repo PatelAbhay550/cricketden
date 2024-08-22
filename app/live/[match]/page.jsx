@@ -109,6 +109,7 @@ const page = async ({ params }) => {
 
   const scorecard = scorecardData?.data?.Innings || [];
   const teams = scorecardData?.data?.Teams || {};
+  console.log(teams);
   // Fetch commentary data for the current inning
   const commentaryRes = await fetch(
     `https://assets-icc.sportz.io/cricket/v1/game/commentary?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&game_id=${matchId}&inning=${currentInning}&lang=en&page_number=1&page_size=20`
@@ -174,7 +175,7 @@ const page = async ({ params }) => {
             scorecard.map((inning, index) => (
               <div key={index} className="border-t border-gray-300 pt-4">
                 <h4 className="text-xl font-semibold text-primary mb-2">
-                  Batting Team: {inning.Battingteam}
+                  {teams[inning.Battingteam]?.Name_Full || "Unknown Team"}
                 </h4>
                 <p className="text-lg text-gray-700 mb-2">
                   <strong>Total:</strong> {inning.Total}/{inning.Wickets} in{" "}
