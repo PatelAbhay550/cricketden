@@ -43,17 +43,34 @@ const HomePage = async () => {
   const up = await fetch(
     `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedCurrentDate}&is_upcoming=true&lang=en&league_ids=1%2C9&page_number=1&page_size=20&pagination=true&timezone=0530&to_date=${formattedFutureDate}&timezone=0530`
   );
-  
+
   if (!up.ok) {
     throw new Error("Failed to fetch upcoming matches");
   }
-  
+
   const updata = await up.json();
 
   // Filter for upcoming matches
   const upcomingMatches = updata.data.matches
     .filter((match) => match.upcoming === true)
-    .slice(0, 3); // Get only the top 4 matches
+    .slice(0, 3);
+  // Calculate the from_date for the prev request
+  const oneDayBeforeCurrentDate = new Date(currentDate);
+  oneDayBeforeCurrentDate.setDate(currentDate.getDate() - 1);
+  const formattedOneDayBeforeDate = formatDate(oneDayBeforeCurrentDate);
+
+  const prev = await fetch(
+    `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedOneDayBeforeDate}&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=${formattedCurrentDate}&timezone=0530`
+  );
+
+  if (!prev.ok) {
+    throw new Error("Failed to fetch previous matches");
+  }
+  const prevData = await prev.json();
+
+  const EndedMatches = prevData.data.matches
+    .filter((match) => match.match_status === "Match Ended")
+    .slice(0, 6); // Get the top 4 matches
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -118,7 +135,6 @@ const HomePage = async () => {
             </p>
           )}
         </div>
-
         <h1 className="text-2xl font-bold text-primary mt-8 mb-4">
           Upcoming Matches
         </h1>
@@ -161,6 +177,55 @@ const HomePage = async () => {
           ) : (
             <p className="text-center text-gray-500">
               No upcoming matches available at the moment.
+            </p>
+          )}
+        </div>{" "}
+        <h1 className="text-2xl font-bold text-primary mt-8 mb-4">
+          Recent Results
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {EndedMatches.length > 0 ? (
+            EndedMatches.map((match) => (
+              <div
+                key={match.match_id}
+                className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 text-sm"
+              >
+                <div className="text-center mb-2">
+                  <h3 className="text-md font-bold text-indigo-500">
+                    {match.series_name}
+                  </h3>
+                  <p className="text-gray-500 text-xs">{match.venue}</p>
+                </div>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold">
+                      {match.teama_display_name}
+                      <br />
+                      {match.scores[0].team_runs}
+                    </h3>
+                  </div>
+                  <div className="text-md font-bold">VS</div>
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold">
+                      {match.teamb_display_name}
+                      <br />
+                      {match.scores[1].team_runs}
+                    </h3>
+                  </div>
+                </div>
+                <div className="text-center mt-2">
+                  <p className="text-gray-600 text-xs">
+                    Match Status: {match.match_result}
+                  </p>
+                  <p className="text-red-500 font-semibold text-xs">
+                    {match.match_start_date_time} (IST)
+                  </p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500">
+              Could not get the recent match details...
             </p>
           )}
         </div>
