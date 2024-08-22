@@ -334,8 +334,8 @@ const page = async ({ params }) => {
               validCommentary.map((entry, index) => (
                 <div key={index} className="mb-4">
                   <p className="text-lg font-semibold text-primary">
-                    Over {entry.Over}: {entry.Batsman_Name} to{" "}
-                    {entry.Bowler_Name} -{entry.Commentary}
+                    Over {entry.Over}: {entry.Bowler_Name} to{" "}
+                    {entry.Batsman_Name} -{entry.Commentary}
                   </p>
                   <p className="text-gray-700">{entry.Ball_Event}</p>
                 </div>
