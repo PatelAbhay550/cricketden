@@ -1,11 +1,32 @@
-
+import React from "react";
 
 export async function generateMetadata({ params }) {
   const { match: matchId } = params;
 
+  // Get current date
+  const currentDate = new Date();
+
+  // Calculate one month before and after the current date
+  const fromDate = new Date();
+  fromDate.setMonth(currentDate.getMonth() - 1);
+
+  const toDate = new Date();
+  toDate.setMonth(currentDate.getMonth() + 1);
+
+  // Format dates as YYYYMMDD
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}${month}${day}`;
+  };
+
+  const formattedFromDate = formatDate(fromDate);
+  const formattedToDate = formatDate(toDate);
+
   // Fetch match details
   const matchRes = await fetch(
-    "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20240821&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=20240821&timezone=0530"
+    `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedFromDate}&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=${formattedToDate}&timezone=0530`
   );
 
   if (!matchRes.ok) {
@@ -65,9 +86,29 @@ export async function generateMetadata({ params }) {
 const page = async ({ params }) => {
   const { match: matchId } = params;
 
+  const currentDate = new Date();
+
+  // Calculate one month before and after the current date
+  const fromDate = new Date();
+  fromDate.setMonth(currentDate.getMonth() - 1);
+
+  const toDate = new Date();
+  toDate.setMonth(currentDate.getMonth() + 1);
+
+  // Format dates as YYYYMMDD
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}${month}${day}`;
+  };
+
+  const formattedFromDate = formatDate(fromDate);
+  const formattedToDate = formatDate(toDate);
+
   // Fetch match details
   const matchRes = await fetch(
-    "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20220820&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=20280829&timezone=0530",
+    `https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=${formattedFromDate}&is_deleted=false&is_live=true&is_recent=true&is_upcoming=true&lang=en&league_ids=1%2C9%2C10%2C35&pagination=false&timezone=0530&to_date=${formattedToDate}&timezone=0530`,
     { next: { revalidate: 10 } }
   );
 
