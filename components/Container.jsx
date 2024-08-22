@@ -17,10 +17,12 @@ const HomePage = async () => {
   const matches = data?.matches || [];
 
   // Filter for live and stumps matches
-  const liveMatches = matches.filter(
-    (match) =>
-      match.live === true || match.match_status.toLowerCase() === "stumps"
-  );
+  const liveMatches = matches
+    .filter(
+      (match) =>
+        match.live === true || match.match_status.toLowerCase() === "stumps"
+    )
+    .slice(0, 3);
   const up = await fetch(
     "https://assets-icc.sportz.io/cricket/v1/schedule?client_id=tPZJbRgIub3Vua93%2FDWtyQ%3D%3D&feed_format=json&from_date=20240821is_upcoming=true&lang=en&league_ids=1%2C9&page_number=1&page_size=20&pagination=true&timezone=0530&to_date=20240925&timezone=0530"
   );
