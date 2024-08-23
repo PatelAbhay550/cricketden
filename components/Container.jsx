@@ -93,11 +93,34 @@ const HomePage = async () => {
                         {match.teama_display_name}
                       </h3>
                       <p className="text-sm font-semibold text-gray-800">
-                        {match.scores?.[0]?.team_runs}/
-                        {match.scores?.[0]?.team_wickets}
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teama_display_name
+                          )?.team_runs
+                        }
+                        /
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teama_display_name
+                          )?.team_wickets
+                        }
                       </p>
                       <p className="text-xs text-gray-600">
-                        {match.scores?.[0]?.team_overs} overs
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teama_display_name
+                          )?.team_overs
+                        }{" "}
+                        overs
                       </p>
                     </div>
                     <div className="text-md font-bold">VS</div>
@@ -106,11 +129,34 @@ const HomePage = async () => {
                         {match.teamb_display_name}
                       </h3>
                       <p className="text-sm font-semibold text-gray-800">
-                        {match.scores?.[1]?.team_runs}/
-                        {match.scores?.[1]?.team_wickets}
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teamb_display_name
+                          )?.team_runs
+                        }
+                        /
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teamb_display_name
+                          )?.team_wickets
+                        }
                       </p>
                       <p className="text-xs text-gray-600">
-                        {match.scores?.[1]?.team_overs} overs
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teamb_display_name
+                          )?.team_overs
+                        }{" "}
+                        overs
                       </p>
                     </div>
                   </div>
@@ -198,24 +244,58 @@ const HomePage = async () => {
                       <h3 className="text-lg font-semibold">
                         {match.teama_display_name}
                         <br />
-                        {match.scores[0].team_runs}
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teama_display_name
+                          )?.team_runs
+                        }
                       </h3>
+                      <p className="text-xs text-gray-600">
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teama_display_name
+                          )?.team_overs
+                        }{" "}
+                        overs
+                      </p>
                     </div>
                     <div className="text-md font-bold">VS</div>
                     <div className="text-center">
                       <h3 className="text-lg font-semibold">
                         {match.teamb_display_name}
+
                         <br />
-                        {match.scores[1].team_runs}
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teamb_display_name
+                          )?.team_runs
+                        }
                       </h3>
+                      <p className="text-xs text-gray-600">
+                        {
+                          // Find the score object where team_name matches teama_display_name
+                          match.scores.find(
+                            (score) =>
+                              score.team_display_name ===
+                              match.teamb_display_name
+                          )?.team_overs
+                        }{" "}
+                        overs
+                      </p>
                     </div>
                   </div>
                   <div className="text-center mt-2">
-                    <p className="text-gray-600 text-xs">
-                      Match Status: {match.match_result}
-                    </p>
                     <p className="text-red-500 font-semibold text-xs">
-                      {match.match_start_date_time} (IST)
+                      {match.match_result}
                     </p>
                   </div>
                 </div>
