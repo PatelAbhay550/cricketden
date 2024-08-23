@@ -71,11 +71,14 @@ const HomePage = async () => {
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <main className="container mx-auto p-4 flex-1">
-        <h1 className="text-2xl font-bold flex items-center gap-4 text-primary mb-4">
+        <h1 className="text-3xl mb-4 font-bold pb-4 text-center">
+          Cricketden - Track Live Cricket Score Free
+        </h1>
+        <h2 className="text-2xl font-bold flex items-center gap-4 text-primary mb-4">
           {" "}
           <TbLiveView className="text-rose-600 text-3xl" />
           Live Matches
-        </h1>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {liveMatches.length > 0 ? (
             liveMatches.map((match) => (
@@ -177,9 +180,9 @@ const HomePage = async () => {
             </p>
           )}
         </div>
-        <h1 className="text-2xl font-bold text-primary mt-8 mb-4">
+        <h2 className="text-2xl font-bold text-primary mt-8 mb-4">
           Upcoming Matches
-        </h1>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {upcomingMatches.length > 0 ? (
             upcomingMatches.map((match) => (
@@ -222,9 +225,9 @@ const HomePage = async () => {
             </p>
           )}
         </div>{" "}
-        <h1 className="text-2xl font-bold text-primary mt-8 mb-4">
+        <h2 className="text-2xl font-bold text-primary mt-8 mb-4">
           Recent Results
-        </h1>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {EndedMatches.length > 0 ? (
             EndedMatches.map((match) => (
