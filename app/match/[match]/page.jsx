@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import React from "react";
 
 export async function generateMetadata({ params }) {
@@ -121,7 +122,7 @@ const page = async ({ params }) => {
   const match = matches.find((m) => m.match_id === matchId);
 
   if (!match) {
-    return <div>No match found for the given ID</div>;
+    return notFound();
   }
 
   const matchStartDate = new Date(match.start_date.replace("T", " "));
