@@ -188,13 +188,13 @@ const page = async ({ params }) => {
 
   const matchStatus = match.live ? "Match is live" : match.match_result;
   return (
-    <div className="min-h-screen bg-background p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div className="bg-gradient-to-r from-primary to-secondary p-6">
           <h1 className="text-3xl font-bold text-white">{match.series_name}</h1>
         </div>
-        {console.log(match)}
-        <div className="bg-background p-8">
+
+        <div className=" p-8">
           <h2 className="bg-rose-800 px-3 py-2 text-zinc-100 text-lg mb-3 font-bold">
             {`${matchStatus}`}
           </h2>
@@ -220,7 +220,7 @@ const page = async ({ params }) => {
           ))}
         </div>
 
-        <div className="bg-background p-8">
+        <div className=" p-8">
           <h3 className="text-2xl font-semibold mb-4">
             First Innings Scorecard
           </h3>
@@ -271,7 +271,7 @@ const page = async ({ params }) => {
           )}
         </div>
         {/* Bowling Table */}
-        <div className="bg-background p-4 md:p-8">
+        <div className="bg-white p-4 md:p-8">
           <h3 className="text-xl md:text-2xl font-semibold mb-4">
             Bowling Scorecard
           </h3>
@@ -330,7 +330,7 @@ const page = async ({ params }) => {
           )}
         </div>
 
-        <div className="bg-background p-8">
+        <div className="bg-white p-8">
           <h3 className="text-2xl font-semibold mb-4">
             Commentary (Inning {currentInning})
           </h3>
@@ -351,7 +351,7 @@ const page = async ({ params }) => {
           </div>
         </div>
 
-        <div className="bg-background p-8">
+        <div className="bg-white p-8">
           <h3 className="text-2xl font-semibold mb-4">Match Details</h3>
           <div className="text-gray-700">
             <p>
