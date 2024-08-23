@@ -1,25 +1,23 @@
+import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa"; // Importing icons from react-icons
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white p-4 mt-10">
+    <footer className="bg-primary text-white p-4 mt-10 ">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="logo text-xl font-bold">
           <span className="text-accent">Cricket</span>den
         </div>
         <ul className="flex space-x-4 text-sm mt-4 md:mt-0">
           <li className="hover:text-accent transition cursor-pointer duration-300">
-            Privacy Policy
+            <Link href="/privacy">Privacy Policy</Link>
           </li>
           <li className="hover:text-accent transition cursor-pointer duration-300">
-            Terms of Use
+            <Link href="/Terms">Terms of Use</Link>
           </li>
           <li className="hover:text-accent transition cursor-pointer duration-300">
-            Contact Us
-          </li>
-          <li className="hover:text-accent transition cursor-pointer duration-300">
-            Careers
+            <Link href="/ContactUs"> Contact Us</Link>
           </li>
         </ul>
         <div className="social-icons flex space-x-4 mt-4 md:mt-0">
