@@ -167,9 +167,6 @@ const HomePage = async () => {
                     <p className="text-gray-600 text-xs">
                       Match Status: {match.match_status}
                     </p>
-                    <p className="text-red-500 font-semibold text-xs">
-                      {match.match_result || match.match_status}
-                    </p>
                   </div>
                 </div>
               </Link>
@@ -213,9 +210,7 @@ const HomePage = async () => {
                   <p className="text-gray-600 text-xs">
                     Match Status: {match.match_status}
                   </p>
-                  <p className="text-red-500 font-semibold text-xs">
-                    {match.match_start_date_time} (IST)
-                  </p>
+                 
                 </div>
               </div>
             ))
