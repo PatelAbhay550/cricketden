@@ -210,59 +210,48 @@ const HomePage = async () => {
                     <div className="text-center">
                       <h3 className="text-lg font-semibold">
                         {match.teama_display_name}
-                        <br />
-                        {
-                          // Find the score object where team_name matches teama_display_name
-                          match.scores.find(
-                            (score) =>
-                              score.team_display_name ===
-                              match.teama_display_name
-                          )?.team_runs
-                        }
                       </h3>
-                      <p className="text-xs text-gray-600">
-                        {
-                          // Find the score object where team_name matches teama_display_name
-                          match.scores.find(
-                            (score) =>
-                              score.team_display_name ===
-                              match.teama_display_name
-                          )?.team_overs
-                        }{" "}
-                        overs
-                      </p>
+                      {match.scores
+                        .filter(
+                          (score) =>
+                            score.team_display_name === match.teama_display_name
+                        )
+                        .map((score, index) => (
+                          <div key={index}>
+                            <p className="text-sm font-semibold text-gray-800">
+                              {score.team_runs}/{score.team_wickets}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              {score.team_overs} overs
+                            </p>
+                          </div>
+                        ))}
                     </div>
                     <div className="text-md font-bold">VS</div>
                     <div className="text-center">
                       <h3 className="text-lg font-semibold">
                         {match.teamb_display_name}
-
-                        <br />
-                        {
-                          // Find the score object where team_name matches teama_display_name
-                          match.scores.find(
-                            (score) =>
-                              score.team_display_name ===
-                              match.teamb_display_name
-                          )?.team_runs
-                        }
                       </h3>
-                      <p className="text-xs text-gray-600">
-                        {
-                          // Find the score object where team_name matches teama_display_name
-                          match.scores.find(
-                            (score) =>
-                              score.team_display_name ===
-                              match.teamb_display_name
-                          )?.team_overs
-                        }{" "}
-                        overs
-                      </p>
+                      {match.scores
+                        .filter(
+                          (score) =>
+                            score.team_display_name === match.teamb_display_name
+                        )
+                        .map((score, index) => (
+                          <div key={index}>
+                            <p className="text-sm font-semibold text-gray-800">
+                              {score.team_runs}/{score.team_wickets}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              {score.team_overs} overs
+                            </p>
+                          </div>
+                        ))}
                     </div>
                   </div>
                   <div className="text-center mt-2">
-                    <p className="text-red-500 font-semibold text-xs">
-                      {match.match_result}
+                    <p className="text-gray-600 text-xs">
+                      Match Status: {match.match_status}
                     </p>
                   </div>
                 </div>
@@ -270,7 +259,7 @@ const HomePage = async () => {
             ))
           ) : (
             <p className="text-center text-gray-500">
-              Could not get the recent match details...
+              No recent matches available at the moment.
             </p>
           )}
         </div>
