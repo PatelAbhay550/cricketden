@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -197,7 +198,10 @@ const page = async ({ params }) => {
 
         <div className=" p-8">
           <h2 className="bg-rose-800 px-3 py-2 text-zinc-100 text-lg mb-3 font-bold">
-            {`${matchStatus}`}
+            {`${matchStatus}`} <br />
+            {!match.live
+              ? "Player Of The Match - " + match.award[0].player_name
+              : ""}
           </h2>
           <h3 className="text-2xl font-semibold mb-4">Scores</h3>
           {match.scores.map((inning, index) => (
