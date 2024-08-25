@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const matchTitle = `${match.teama} vs ${match.teamb} - ${match.series_name}`;
+   const matchTitle = `${match.teama} vs ${match.teamb} - ${match.match_number} ${match.match_date_ist} Scorecard Commentary Updates`;
   const matchDescription = `Catch the live action of ${match.teama} vs ${
     match.teamb
   } on ${new Date(match.start_date).toLocaleDateString()} at ${
