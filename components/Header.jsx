@@ -10,6 +10,19 @@ const Header = () => {
             <span className="text-accent">Cricket</span>den
           </Link>
         </div>
+        <div className="options">
+          <ul className="flex items-center gap-5 ">
+            <Link className="hover:text-accent" href="/players">
+              <li>Players</li>
+            </Link>
+            <Link className="hover:text-accent" href="/privacy">
+              <li>Privacy Policy</li>
+            </Link>
+            <Link className="hover:text-accent" href="/ContactUs">
+              <li>Contact Us</li>
+            </Link>
+          </ul>
+        </div>
       </div>
     </header>
   );
