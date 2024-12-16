@@ -37,12 +37,11 @@ const Blogs = async () => {
         >
           <Link href={`/Blogs/${blog.slug}`}>
             <div className="relative w-full h-48">
-              <Image
+              <img
                 src={blog.coverimage}
                 alt={blog.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-t-lg"
+               
+                className="rounded-t-lg  object-cover"
               />
             </div>
             <div className="p-4">
