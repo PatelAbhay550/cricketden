@@ -43,6 +43,8 @@ const page = async () => {
             <Image
               className="w-full md:w-3/4 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
               src={featuredblog.coverimage}
+              width={400}
+              height={250}
               alt="ind-vs-aus"
             />
           </div>
