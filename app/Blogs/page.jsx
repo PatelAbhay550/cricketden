@@ -1,5 +1,7 @@
 import Blogs, { getBlogs } from "@/components/Blogs";
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 
 export const metadata = {
@@ -38,7 +40,7 @@ const page = async () => {
         {/* Featured Section */}
         <div className="featured px-3 w-full md:w-[70vw] bg-white shadow-md rounded-lg flex flex-col md:flex-row items-center overflow-hidden">
           <div className="imgarea flex w-full md:w-1/2">
-            <img
+            <Image
               className="w-full md:w-3/4 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
               src={featuredblog.coverimage}
               alt="ind-vs-aus"
