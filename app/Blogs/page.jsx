@@ -1,6 +1,5 @@
 import Blogs, { getBlogs } from "@/components/Blogs";
 import Link from "next/link";
-import React from "react";
 
 
 export const metadata = {
