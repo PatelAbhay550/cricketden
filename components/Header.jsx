@@ -86,7 +86,15 @@ const Header = () => {
                 Player Stats
               </Link>
             </li>
-            
+            <li>
+              <Link
+                href="/Blogs"
+                className="hover:text-yellow-400 transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                Cricket Blog
+              </Link>
+            </li>
             <li>
               <Link
                 href="/ContactUs"
