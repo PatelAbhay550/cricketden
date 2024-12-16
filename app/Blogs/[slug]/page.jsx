@@ -112,14 +112,11 @@ const BlogPage = async ({ params }) => {
 
         {/* Cover Image */}
         <div className="relative w-full h-80 md:h-[30rem] mb-4">
-          <Image
+          <img
             src={blog.coverimage}
             alt={blog.title}
-            priority={true}
-            width={1200}
-            height={800}
-            objectFit="cover"
-            className="rounded-md shadow-md mb-3"
+            
+            className="rounded-md shadow-md mb-3  object-cover"
           />
           <div className="alt bg-accent  text-white text-center text-sm py-1">
             <p className="caption-text  ">
