@@ -141,12 +141,11 @@ const BlogPage = async ({ params }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {suggestedBlogs.map((suggestedBlog) => (
                 <div key={suggestedBlog.slug} className="bg-white rounded-lg shadow-md p-6">
-                  <Image
+                  <img
                     src={suggestedBlog.coverimage}
                     alt={suggestedBlog.title}
-                    width={400}
-                    height={250}
-                    className="rounded-md object-cover mb-4"
+                    
+                    className="aspect-square rounded-md object-cover mb-4"
                   />
                   <h3 className="text-xl font-bold text-gray-800">{suggestedBlog.title}</h3>
                   <p className="text-sm text-gray-600 mt-2">
