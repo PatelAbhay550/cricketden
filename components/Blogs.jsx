@@ -8,7 +8,7 @@ import Link from "next/link";
 // Fetch blogs server-side
 export async function getBlogs() {
   const blogsRef = collection(db, "allblogs");
-  const q = query(blogsRef, orderBy("timestamp", "desc"));
+  const q = query(blogsRef);
   const querySnapshot = await getDocs(q);
 
   return querySnapshot.docs.map((doc) => ({
@@ -41,7 +41,7 @@ const Blogs = async () => {
                 src={blog.coverimage}
                 alt={blog.title}
                
-                className="rounded-t-lg  object-cover"
+                className="rounded-t-lg aspect-square object-cover"
               />
             </div>
             <div className="p-4">
