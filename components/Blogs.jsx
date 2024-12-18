@@ -36,7 +36,7 @@ const Blogs = async () => {
           className="blog-card bg-white shadow-md rounded-lg overflow-hidden "
         >
           <Link href={`/Blogs/${blog.slug}`}>
-            <div className="relative w-full h-48">
+            <div className="relative w-full h-48 overflow-hidden">
               <img
                 src={blog.coverimage}
                 alt={blog.title}
