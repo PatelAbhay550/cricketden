@@ -41,7 +41,7 @@ const Blogs = async () => {
                 src={blog.coverimage}
                 alt={blog.title}
                
-                className="rounded-t-lg aspect-square overflow-hidden object-cover"
+                className="rounded-t-lg w-[400px] h-[250px] aspect-square overflow-hidden object-cover"
               />
             </div>
             <div className="p-4">
