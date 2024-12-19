@@ -116,7 +116,7 @@ const BlogPage = async ({ params }) => {
           <img
             src={blog.coverimage}
             alt={blog.title}
-            
+            loading="eager"
             className="rounded-md shadow-md mb-3  object-cover"
           />
           <div className="alt bg-accent  text-white text-center text-sm py-1">
