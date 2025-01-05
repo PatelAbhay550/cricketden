@@ -9,6 +9,7 @@ export const metadata = {
   title: "CricketDen - Latest Cricket Score and Analysis",
   description:
     "Cricket live Score by Abhay Patel. Get latest cricket score, Cricket Schedule, Upcoming Cricket tour details",
+   keywords: ['Cricketden', 'Cricket den', 'IPL 2025','IPL','IPL News','Live cricket','Live cricket scorecard']
 };
 
 export default function RootLayout({ children }) {
