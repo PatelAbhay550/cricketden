@@ -14,6 +14,9 @@ const Footer = () => {
             <Link href="/privacy">Privacy Policy</Link>
           </li>
           <li className="hover:text-accent transition cursor-pointer duration-300">
+            <Link href="/ipl2024-tracker">IPL 2024 Tracker</Link>
+          </li>
+          <li className="hover:text-accent transition cursor-pointer duration-300">
             <Link href="/Terms">Terms of Use</Link>
           </li>
           <li className="hover:text-accent transition cursor-pointer duration-300">
