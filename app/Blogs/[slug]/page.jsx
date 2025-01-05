@@ -25,7 +25,6 @@ export const generateMetadata = async ({ params }) => {
   return {
     title: blog ? `${blog.title} - CricketDen` : "CricketDen Blogs - Latest Cricket Blogs and Analysis",
     description: blog ? truncate(blog.desc || "No description available.", 150) : "Read the latest cricket blogs and analysis on CricketDen. Stay updated with the latest cricket news, match previews, and more.",
-    keywords: blog.tags ? blog.tags.join(', '),
     openGraph: {
       images:[blog.coverimage]
     }
