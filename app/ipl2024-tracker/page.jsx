@@ -1,4 +1,4 @@
-import ChartDonut from "@/components/ChartDonut";
+
 import { FaFlag } from "react-icons/fa";
 import React from "react";
 
