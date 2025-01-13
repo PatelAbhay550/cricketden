@@ -88,7 +88,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="/ipl2024-tracker"
+                href="/ipl2024"
                 className="hover:text-yellow-400 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
