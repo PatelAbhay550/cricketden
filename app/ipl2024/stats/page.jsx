@@ -73,9 +73,10 @@ const IPLStats = async () => {
   ]);
 
   // Helper function to get the top performer
-  const getTopPerformer = (data) => {
-    const { t20StatsList } = data;
-    return t20StatsList.values[0].values; // First player's stats
+  const getTopPerformer = async (data) => {
+    const { t20StatsList } = await data;
+
+    return t20StatsList?.values[0]?.values; // First player's stats
   };
 
   const topRunScorer = getTopPerformer(mostRuns);
