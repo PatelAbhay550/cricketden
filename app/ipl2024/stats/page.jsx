@@ -71,6 +71,8 @@ const IPLStats = async () => {
     mostFoursRes.json(),
     mostSixesRes.json(),
   ]);
+  console.log("most runs");
+  console.log(mostRuns);
 
   // Helper function to get the top performer
   const getTopPerformer = async (data) => {
@@ -79,12 +81,12 @@ const IPLStats = async () => {
     return t20StatsList?.values[0]?.values; // First player's stats
   };
 
-  const topRunScorer = getTopPerformer(mostRuns);
-  const topWicketTaker = getTopPerformer(mostWickets);
-  const topHundreds = getTopPerformer(mostHundreds);
-  const topFifties = getTopPerformer(mostFifties);
-  const topFours = getTopPerformer(mostFours);
-  const topSixes = getTopPerformer(mostSixes);
+  const topRunScorer = (await getTopPerformer(mostRuns)) || [];
+  const topWicketTaker = (await getTopPerformer(mostWickets)) || [];
+  const topHundreds = (await getTopPerformer(mostHundreds)) || [];
+  const topFifties = (await getTopPerformer(mostFifties)) || [];
+  const topFours = (await getTopPerformer(mostFours)) || [];
+  const topSixes = (await getTopPerformer(mostSixes)) || [];
   // JSON-LD Schema
   const jsonLd = {
     "@context": "https://schema.org",
