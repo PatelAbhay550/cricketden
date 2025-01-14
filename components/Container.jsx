@@ -251,7 +251,7 @@ const HomePage = async () => {
                   </div>
                   <div className="text-center mt-2">
                     <p className="text-gray-600 text-xs">
-                      Match Status: {match.match_status}
+                       Match Status: {match.match_result}
                     </p>
                   </div>
                 </div>
