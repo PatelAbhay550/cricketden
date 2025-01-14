@@ -243,7 +243,7 @@ const page = async ({ params }) => {
                   <strong>Run Rate:</strong> {inning.Runrate}
                 </p>
                 <table className="w-full text-left table-auto">
-                  <head className="bg-slate-800">
+                  <thead className="bg-slate-800">
                     <tr>
                       <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Batsman</th>
                       <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Runs</th>
