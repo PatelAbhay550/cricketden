@@ -287,18 +287,18 @@ const page = async ({ params }) => {
                   {teams[inning.Bowlingteam]?.Name_Full || "Unknown Team"}
                 </h4>
                 <table className="w-full text-left table-auto">
-                  <thead>
+                  <head className="bg-slate-800">
                     <tr>
-                      <th className="px-2 py-2 text-sm md:text-base">Bowler</th>
-                      <th className="px-2 py-2 text-sm md:text-base">Overs</th>
-                      <th className="px-2 py-2 text-sm md:text-base">
+                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Bowler</th>
+                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Overs</th>
+                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">
                         Maidens
                       </th>
-                      <th className="px-2 py-2 text-sm md:text-base">Runs</th>
-                      <th className="px-2 py-2 text-sm md:text-base">
+                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Runs</th>
+                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">
                         Wickets
                       </th>
-                      <th className="px-2 py-2 text-sm md:text-base">
+                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">
                         Economy
                       </th>
                     </tr>
