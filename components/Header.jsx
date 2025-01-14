@@ -80,7 +80,7 @@ const Header = () => {
             <li>
               <Link
                 href="/players"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-[#E63946] transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Player Stats
@@ -89,7 +89,7 @@ const Header = () => {
             <li>
               <Link
                 href="/ipl2024"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-[#E63946] transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 IPL 2024 Tracker
@@ -98,7 +98,7 @@ const Header = () => {
             <li>
               <Link
                 href="/Blogs"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-[#E63946] transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Cricket Blog
@@ -107,7 +107,7 @@ const Header = () => {
             <li>
               <Link
                 href="/ContactUs"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-[#E63946] transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Contact Us
