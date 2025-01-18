@@ -149,7 +149,7 @@ const BlogPage = async ({ params }) => {
                   <img
                     src={suggestedBlog.coverimage}
                     alt={suggestedBlog.title}
-                    className="aspect-square rounded-md object-cover mb-4"
+                    className="aspect-square w-full rounded-md object-cover mb-4"
                   />
                   <h3 className="text-xl font-bold text-gray-800">
                     {suggestedBlog.title}
