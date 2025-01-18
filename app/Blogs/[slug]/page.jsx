@@ -121,7 +121,7 @@ const BlogPage = async ({ params }) => {
             src={blog.coverimage}
             alt={blog.title}
             loading="eager"
-            className="rounded-md shadow-md mb-3 object-cover"
+            className="rounded-md w-full shadow-md mb-3 object-cover"
           />
           <div className="alt bg-accent text-white text-center text-sm py-1">
             <p className="caption-text">{blog.desc}</p>
