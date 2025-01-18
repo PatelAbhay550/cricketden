@@ -20,7 +20,7 @@ export const generateMetadata = async ({ params }) => {
   }
 
   const blog = querySnapshot.docs[0].data();
-  const keywords = blog.keywords?.join(", ") || "cricket, blogs, CricketDen";
+  const keywords = blog.tags?.join(", ") || "cricket, blogs, CricketDen";
 
   return {
     title: blog ? `${blog.title} - CricketDen` : "CricketDen Blogs - Latest Cricket Blogs and Analysis",
