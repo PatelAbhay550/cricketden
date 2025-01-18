@@ -6,6 +6,7 @@ import Link from "next/link";
 
 
 // Use generateMetadata to fetch and set dynamic metadata
+// Use generateMetadata to fetch and set dynamic metadata
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
   const blogsRef = collection(db, "allblogs");
@@ -21,15 +22,28 @@ export const generateMetadata = async ({ params }) => {
   }
 
   const blog = querySnapshot.docs[0].data();
+  const keywords = blog.keywords?.join(", ") || "cricket, blogs, CricketDen";
 
   return {
     title: blog ? `${blog.title} - CricketDen` : "CricketDen Blogs - Latest Cricket Blogs and Analysis",
-    description: blog ? truncate(blog.desc || "No description available.", 150) : "Read the latest cricket blogs and analysis on CricketDen. Stay updated with the latest cricket news, match previews, and more.",
+    description: blog
+      ? truncate(blog.desc || "No description available.", 150)
+      : "Read the latest cricket blogs and analysis on CricketDen. Stay updated with the latest cricket news, match previews, and more.",
+    keywords, // Include keywords
     openGraph: {
-      images:[blog.coverimage]
-    }
+      images: [blog.coverimage],
+    },
   };
 };
+
+// Helper function to truncate text
+const truncate = (text, length) => {
+  if (text.length > length) {
+    return `${text.slice(0, length)}...`;
+  }
+  return text;
+};
+
 
 // Helper function to truncate text
 const truncate = (text, length) => {
