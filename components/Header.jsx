@@ -88,6 +88,15 @@ const Header = () => {
             </li>
             <li>
               <Link
+                href="/sa20-2025"
+                className="hover:text-[#E63946] transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                SA20 2025
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/ipl2024"
                 className="hover:text-[#E63946] transition-colors"
                 onClick={() => setMenuOpen(false)}
