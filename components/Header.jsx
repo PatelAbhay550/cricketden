@@ -86,6 +86,15 @@ const Header = () => {
                 Player Stats
               </Link>
             </li>
+             <li>
+              <Link
+                href="/live-blogs"
+                className="hover:text-[#E63946] transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+               Live Cricket Blogs
+              </Link>
+            </li>
             <li>
               <Link
                 href="/sa20-2025"
