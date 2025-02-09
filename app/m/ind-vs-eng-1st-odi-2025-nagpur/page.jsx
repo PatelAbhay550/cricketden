@@ -37,7 +37,7 @@ const Page = () => {
   };
 
   return (
-    <main className="flex flex-col min-h-screen py-3 px-4 md:px-5 font-[Poppins]">
+    <main className="flex flex-col min-h-screen py-3 px-4 md:px-5 ">
       <header className="top text-center mb-8 mt-6">
         <h1 className="text-2xl font-bold">India vs England First ODI 2025</h1>
         <h2 className="text-xl font-bold">India won by 6 Wickets</h2>
