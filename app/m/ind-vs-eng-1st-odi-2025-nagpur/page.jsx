@@ -1,5 +1,9 @@
 import React from "react";
-
+export const metadata = {
+  title: "India vs England First ODI 2025",
+  description: "India vs England First ODI 2025, India won by 6 wickets",
+  keywords: "India vs England, First ODI, 2025, Cricket, Nagpur",
+};
 const Page = () => {
   const team1bg = "bg-[#15295E]";
   const team2bg = "bg-[#005CA9]";
