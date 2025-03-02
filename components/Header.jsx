@@ -79,6 +79,15 @@ const Header = () => {
           >
             <li>
               <Link
+                href="/champions-trophy-2025"
+                className="hover:text-[#E63946] transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                Champions Trophy 2025
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/players"
                 className="hover:text-[#E63946] transition-colors"
                 onClick={() => setMenuOpen(false)}
@@ -86,15 +95,7 @@ const Header = () => {
                 Player Stats
               </Link>
             </li>
-             <li>
-              <Link
-                href="/live-blogs"
-                className="hover:text-[#E63946] transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
-               Live Cricket Blogs
-              </Link>
-            </li>
+             
             <li>
               <Link
                 href="/sa20-2025"
