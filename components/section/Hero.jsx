@@ -1,4 +1,4 @@
-import React from "react";
+import IPL2025Bar from "@/components/sections/IPL2025Bar";
 
 const Hero = async () => {
   try {
@@ -82,6 +82,7 @@ const Hero = async () => {
               No live matches available at the moment.
             </p>
           )}
+          <IPL2025Bar/>
         </div>
       </div>
     );
