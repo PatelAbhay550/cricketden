@@ -3,7 +3,7 @@ import Link from "next/link";
 import { db } from "@/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Image from "next/image";
-import IPL2025Bar from "./sections/IPL2025Bar";
+import IPL2025Bar from "./section/IPL2025Bar";
 
 // Fetch blogs server-side
 export async function getBlogs() {
