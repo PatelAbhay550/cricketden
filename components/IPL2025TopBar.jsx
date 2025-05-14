@@ -6,7 +6,7 @@ const IPL2025TopBar = () => {
         { name: 'Matches', link: 'ipl2025/matches' },
         { name: 'Points Table', link: 'ipl2025/points-table' },
         { name: 'Stats', link: 'ipl2025/stats' },
-        { name: 'Squads', link: 'ipl2025/squads' },
+        { name: 'Squads', link: 'ipl2025/squads' }
     ];
   return (
    <div className="flex space-x-6 px-4 py-3 text-sm font-medium whitespace-nowrap overflow-x-auto">
