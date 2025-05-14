@@ -1,6 +1,28 @@
 import IPL2025TopBar from '@/components/IPL2025TopBar';
 import React from 'react';
-
+export const metadata = {
+  title: "IPL 2025 All Stats| Runs, Wickets, Fours, Sixes - Cricketden",
+  description:
+    "IPL 2025 All Stats, A dashboard that displays the top run scorers, top wicket takers, most fours, and most sixes from players of the IPL 2025 season from  MI, CSK, RCB, RR, PBKS, KKR, DC, SRH, GT, and LSG ",
+  keywords:
+    "IPL 2025, IPL 2025 stats, IPL 2025 Standings, IPL 2025 Teams, IPL 2025 squads",
+  openGraph: {
+    title: "IPL 2025 All Stats| Runs, Wickets, Fours, Sixes - Cricketden,
+    description:
+      "IPL 2025 All Stats, A dashboard that displays the top run scorers, top wicket takers, most fours, and most sixes from players of the IPL 2025 season from  MI, CSK, RCB, RR, PBKS, KKR, DC, SRH, GT, and LSG ",
+    url: "https://cricketden.vercel.app/IPL-2025/stats",
+    type: "website",
+    site_name: "Cricketden",
+    images: [
+      {
+        url: "https://pbs.twimg.com/media/Ggg6vqVa8AU43GK?format=jpg&name=small",
+        width: 800,
+        height: 600,
+        alt: "IPL 2025",
+      },
+    ],
+  },
+};
 const Page = async () => {
     let topRunScorers = [];
     let topWicketTakers = [];
