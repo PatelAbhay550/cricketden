@@ -7,7 +7,7 @@ export const metadata = {
   keywords:
     "IPL 2025, IPL 2025 Points Table, IPL 2025 Standings, IPL 2025 Teams, IPL 2025 Matches",
   openGraph: {
-    title: "IPL 2025 Live Matches and Schedule - Cricketden,
+    title: "IPL 2025 Live Matches and Schedule - Cricketden",
     description:
       "IPL 2025 Matches, A dashboard that displays the matches of the IPL 2025 season for MI, CSK, RCB, RR, PBKS, KKR, DC, and SRH.",
     url: "https://cricketden.vercel.app/IPL-2025/matches",
