@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db } from "@/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Image from "next/image";
+import IPL2025Bar from "@/components/sections/IPL2025Bar";
 
 // Fetch blogs server-side
 export async function getBlogs() {
@@ -167,6 +168,7 @@ const HomePage = async () => {
             </p>
           )}
         </div>
+        <IPL2025Bar/>
         <h2 className="text-2xl flex items-center gap-2 font-bold text-primary mt-8 mb-4">
           <TbBrandBlogger className="text-rose-600 text-3xl" />
           Blogs to Read
