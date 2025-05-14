@@ -1,7 +1,29 @@
 
 import IPL2025TopBar from '@/components/IPL2025TopBar';
 import React from 'react';
-
+export const metadata = {
+  title: "IPL 2025 Points Table - Cricketden",
+  description:
+    " IPL 2025 Points Table, A dashboard that displays the points table of the IPL 2025 season",
+  keywords:
+    "IPL 2025, IPL 2025 Points Table, IPL 2025 Standings, IPL 2025 Teams, IPL 2025 Stats",
+  openGraph: {
+    title: "IPL 2025 Points Table - Cricketden",
+    description:
+      "IPL 2024 Points Table, A dashboard that displays the points table of the IPL 2024 season for MI, CSK, RCB, RR, PBKS, KKR, DC, and SRH.",
+    url: "https://cricketden.vercel.app/IPL-2025/points-table",
+    type: "website",
+    site_name: "Cricketden",
+    images: [
+      {
+        url: "https://pbs.twimg.com/media/Ggg6vqVa8AU43GK?format=jpg&name=small",
+        width: 800,
+        height: 600,
+        alt: "IPL 2025",
+      },
+    ],
+  },
+};
 const Page = async () => {
   let standings = [];
 
