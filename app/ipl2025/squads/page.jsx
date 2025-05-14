@@ -1,4 +1,4 @@
-'use client'
+
 
 import React from 'react'
 import {
@@ -9,7 +9,29 @@ import {
 } from 'react-icons/gi'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import { FaFireFlameCurved } from "react-icons/fa6";
-
+export const metadata = {
+  title: "IPL 2025 All Squads - Cricketden",
+  description:
+    "IPL 2025 All Squads, A dashboard that displays all the players of the IPL 2025 season from  MI, CSK, RCB, RR, PBKS, KKR, DC, SRH, GT, and LSG ",
+  keywords:
+    "IPL 2025, IPL 2025 Points Table, IPL 2025 Standings, IPL 2025 Teams, IPL 2025 squads",
+  openGraph: {
+    title: "IPL 2025 All Squads - Cricketden,
+    description:
+      "IPL 2025 All Squads, A dashboard that displays all the players of the IPL 2025 season from  MI, CSK, RCB, RR, PBKS, KKR, DC, SRH, GT and LSG ",
+    url: "https://cricketden.vercel.app/IPL-2025/squads",
+    type: "website",
+    site_name: "Cricketden",
+    images: [
+      {
+        url: "https://pbs.twimg.com/media/Ggg6vqVa8AU43GK?format=jpg&name=small",
+        width: 800,
+        height: 600,
+        alt: "IPL 2025",
+      },
+    ],
+  },
+};
 const roleIcons = {
   Batter: <GiCricketBat className="inline mr-2 text-yellow-600" />,
   Bowler: <GiArcheryTarget className="inline mr-2 text-blue-600" />,
