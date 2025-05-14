@@ -169,7 +169,8 @@ const HomePage = async () => {
           )}
         </div>
         <div className="mt-4">
-        <IPL2025Bar/></div>
+        <IPL2025Bar/>
+        </div>
         <h2 className="text-2xl flex items-center gap-2 font-bold text-primary mt-8 mb-4">
           <TbBrandBlogger className="text-rose-600 text-3xl" />
           Blogs to Read
