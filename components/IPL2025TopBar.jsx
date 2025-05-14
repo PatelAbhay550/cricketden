@@ -3,10 +3,7 @@ import React from 'react'
 
 const IPL2025TopBar = () => {
     const tabs = [
-        { name: 'Home', link: 'ipl2025/home' },
         { name: 'Matches', link: 'ipl2025/matches' },
-        { name: 'News', link: 'ipl2025/news' },
-        { name: 'Videos', link: 'ipl2025/videos' },
         { name: 'Points Table', link: 'ipl2025/points-table' },
         { name: 'Stats', link: 'ipl2025/stats' },
         { name: 'Squads', link: 'ipl2025/squads' },
