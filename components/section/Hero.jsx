@@ -1,4 +1,4 @@
-import IPL2025Bar from "@/components/sections/IPL2025Bar";
+import IPL2025Bar from "./IPL2025Bar";
 
 const Hero = async () => {
   try {
