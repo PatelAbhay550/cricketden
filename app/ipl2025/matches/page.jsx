@@ -1,6 +1,28 @@
 import IPL2025TopBar from '@/components/IPL2025TopBar';
 import React from 'react';
-
+export const metadata = {
+  title: "IPL 2025 Live Matches and Schedule - Cricketden",
+  description:
+    " IPL 2025 Matches, A dashboard that displays the upcoming and completed matches of the IPL 2025 season",
+  keywords:
+    "IPL 2025, IPL 2025 Points Table, IPL 2025 Standings, IPL 2025 Teams, IPL 2025 Matches",
+  openGraph: {
+    title: "IPL 2025 Live Matches and Schedule - Cricketden,
+    description:
+      "IPL 2025 Matches, A dashboard that displays the matches of the IPL 2025 season for MI, CSK, RCB, RR, PBKS, KKR, DC, and SRH.",
+    url: "https://cricketden.vercel.app/IPL-2025/matches",
+    type: "website",
+    site_name: "Cricketden",
+    images: [
+      {
+        url: "https://pbs.twimg.com/media/Ggg6vqVa8AU43GK?format=jpg&name=small",
+        width: 800,
+        height: 600,
+        alt: "IPL 2025",
+      },
+    ],
+  },
+};
 const page = async () => {
   const iplteamcolors = [
     { team: 'Chennai Super Kings', color: '#F9CD05' },
