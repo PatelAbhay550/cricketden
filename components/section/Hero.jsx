@@ -82,7 +82,7 @@ const Hero = async () => {
               No live matches available at the moment.
             </p>
           )}
-          <IPL2025Bar/>
+          
         </div>
       </div>
     );
