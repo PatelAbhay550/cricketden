@@ -16,7 +16,7 @@ export const metadata = {
   keywords:
     "IPL 2025, IPL 2025 Points Table, IPL 2025 Standings, IPL 2025 Teams, IPL 2025 squads",
   openGraph: {
-    title: "IPL 2025 All Squads - Cricketden,
+    title: "IPL 2025 All Squads - Cricketden",
     description:
       "IPL 2025 All Squads, A dashboard that displays all the players of the IPL 2025 season from  MI, CSK, RCB, RR, PBKS, KKR, DC, SRH, GT and LSG ",
     url: "https://cricketden.vercel.app/IPL-2025/squads",
