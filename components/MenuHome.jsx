@@ -2,16 +2,13 @@ import React from "react";
 import Link from "next/link";
 
 const menuItems = [
-  { name: "IPL 2025", link: "/ipl-2025/matches" },
+  { name: "IPL 2025", link: "/ipl2025/matches" },
   { name: "Champions Trophy", link: "/champions-trophy-2025" },
   { name: "Cricket Blog", link: "/Blogs" },
   { name: "Take Quiz", link: "/quiz" },
   { name: "SA20 2025", link: "/sa20-2025" },
   { name: "IPL 2024", link: "/ipl-2024" },
-  { name: "Player Stats", link: "/players" },
-  { name: "Contact Us", link: "/ContactUs" },
-  { name: "Privacy Policy", link: "/privacy" },
-  { name: "Terms of Use", link: "/terms" },
+  { name: "Player Stats", link: "/players" }
 ];
 
 const MenuHome = () => {
