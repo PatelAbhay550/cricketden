@@ -190,7 +190,7 @@ const page = async ({ params }) => {
 
   const matchStatus = match.live ? "Match is live" : match.match_result;
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-background p-8">
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div className="bg-gradient-to-r from-primary to-secondary p-6">
           <h1 className="text-3xl font-bold text-white">{match.series_name}</h1>
