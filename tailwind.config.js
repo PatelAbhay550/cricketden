@@ -16,7 +16,7 @@ module.exports = {
         primary: "#1D3557", // Dark Blue
         secondary: "#457B9D", // Sky Blue
         accent: "#E63946", // Red
-        background: "#F1FAEE", // Off-White
+        background: "#E1EFFE", // Off-blue
         dark: "#343A40", // Dark Grey
       },
     },
