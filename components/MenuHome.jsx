@@ -5,7 +5,7 @@ const menuItems = [
   { name: "IPL 2025", link: "/ipl2025/matches" },
   { name: "Champions Trophy", link: "/champions-trophy-2025" },
   { name: "Cricket Blog", link: "/Blogs" },
-  { name: "Take Quiz", link: "/quiz" },
+  { name: "Take Quiz", link: "/quiz/test-matches/unique-records" },
   { name: "SA20 2025", link: "/sa20-2025" },
   { name: "IPL 2024", link: "/ipl-2024" },
   { name: "Player Stats", link: "/players" }
