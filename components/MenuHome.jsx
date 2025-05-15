@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 
 const menuItems = [
   { name: "IPL 2025", link: "/ipl-2025/matches" },
@@ -24,7 +24,7 @@ const MenuHome = () => {
               key={idx}
               className="cursor-pointer text-gray-700 dark:text-gray-200 hover:text-[#E63946] transition-colors duration-200"
             >
-              <Link to={item.link}>{item.name}</Link>
+              <Link href={item.link}>{item.name}</Link>
             </li>
           ))}
         </ul>
