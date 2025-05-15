@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "next/link";
+import Link from "next/link";
 
 const menuItems = [
   { name: "IPL 2025", link: "/ipl-2025/matches" },
