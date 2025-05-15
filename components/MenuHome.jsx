@@ -14,7 +14,7 @@ const menuItems = [
 const MenuHome = () => {
   return (
     <nav className="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-      <div className="overflow-x-auto scrollbar-hide">
+      <div className="overflow-x-auto scrollbar-hide pr-4">
         <ul className="flex space-x-6 px-4 py-2 whitespace-nowrap text-sm font-medium">
           {menuItems.map((item, idx) => (
             <li
