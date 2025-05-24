@@ -116,7 +116,7 @@ const BlogPage = async ({ params }) => {
         </header>
 
         {/* Cover Image */}
-        <div className="relative w-full h-80 md:h-[30rem] mb-4">
+        <div className="relative w-full overflow-hidden h-80 md:h-[30rem] mb-4">
           <img
             src={blog.coverimage}
             alt={blog.title}
