@@ -116,7 +116,7 @@ const BlogPage = async ({ params }) => {
         </header>
 
         {/* Cover Image */}
-        <div className="relative w-full overflow-hidden h-80 md:h-[30rem] mb-4">
+        <div className="relative w-full overflow-hidden h-80 md:h-[30rem] mb-2">
           <img
             src={blog.coverimage}
             alt={blog.title}
@@ -130,7 +130,7 @@ const BlogPage = async ({ params }) => {
 
         {/* Content Section */}
         <div
-          className="prose max-w-none py-0 md:py-32"
+          className="prose max-w-none py-0 md:py-24"
           dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
         ></div>
 
