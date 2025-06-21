@@ -26,6 +26,9 @@ export default function RootLayout({ children }) {
         <Header />
     <MenuHome />
         {children}<Analytics/>
+    <a href="/" alt="page hit counter" target="_blank" >
+<embed src="//s10.histats.com/109.swf"  flashvars="jver=1&acsid=4958585&domi=4"  quality="high"  width="150" height="20" name="109.swf"  align="middle" type="application/x-shockwave-flash" pluginspage="//www.macromedia.com/go/getflashplayer" wmode="transparent" /></a>
+<img  src="//sstatic1.histats.com/0.gif?4958585&101" alt="site stats" border="0"/>
         <Footer />
       </body>
     </html>
