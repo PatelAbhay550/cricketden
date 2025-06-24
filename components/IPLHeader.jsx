@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaArrowLeft, FaCricketBall, FaTrophy } from "react-icons/fa";
-import { IoSparkles, IoCrown } from "react-icons/io5";
+import { IoSparkles } from "react-icons/io5";
+import {FaCrown} from 'react-icons/fa'
 
 const IPLHeader = () => {
   return (
@@ -18,7 +19,7 @@ const IPLHeader = () => {
           {/* Title Section */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
-                <IoCrown className="w-8 h-8 text-yellow-300" />
+                <FaCrown className="w-8 h-8 text-yellow-300" />
               </div>
               <div>                <h1 className="text-3xl font-bold flex items-center gap-2">
                   Indian Premier League
