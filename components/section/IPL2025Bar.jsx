@@ -46,51 +46,68 @@ const IPL2025Bar = async () => {
     console.error('Failed to fetch IPL 2025 data:', error);
   }
 
-  return (
-    <div className="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-    {/* Tabs */}
-       <IPL2025TopBar/>
+  return  (
+    <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-700 rounded-2xl shadow-xl overflow-hidden">
+      {/* Header */}
+      <div className="bg-black/20 px-6 py-4">
+        <IPL2025TopBar/>
+      </div>
 
-        {/* Upcoming Matches */}
-        <div className="overflow-x-auto whitespace-nowrap py-4 px-4 flex space-x-4">
-          {matchData.map((match) => {
-          const firstColor = getTeamColor(match.FirstBattingTeamName);
-          const secondColor = getTeamColor(match.SecondBattingTeamName);
+      {/* Upcoming Matches */}
+      <div className="p-6">
+        <h3 className="text-white text-xl font-bold mb-4 flex items-center gap-2">
+          🏏 IPL 2025 - Upcoming Matches
+        </h3>
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-4 pb-2">
+            {matchData.map((match) => {
+              const firstColor = getTeamColor(match.FirstBattingTeamName);
+              const secondColor = getTeamColor(match.SecondBattingTeamName);
 
-          return (
-            <div
-              key={match.MatchID}
-              className="bg-gray-100 overflow-hidden dark:bg-gray-800 rounded-xl px-4 py-3 min-w-[250px] shadow-md"
-            >
-              <div className="flex justify-between items-center mb-2">
-                <div className="flex items-center space-x-2">
-                  <div
-                    className="w-10 h-10 text-white rounded-full flex items-center justify-center font-bold"
-                    style={{ backgroundColor: firstColor }}
-                  >
-                    {match.FirstBattingTeamCode}
+              return (
+                <div
+                  key={match.MatchID}
+                  className="bg-white rounded-xl p-4 min-w-[280px] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
+                >
+                  {/* Teams */}
+                  <div className="flex justify-between items-center mb-3">
+                    <div className="flex items-center space-x-3">
+                      <div
+                        className="w-12 h-12 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg"
+                        style={{ backgroundColor: firstColor }}
+                      >
+                        {match.FirstBattingTeamCode}
+                      </div>
+                      <span className="text-lg font-bold text-gray-600">vs</span>
+                      <div
+                        className="w-12 h-12 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg"
+                        style={{ backgroundColor: secondColor }}
+                      >
+                        {match.SecondBattingTeamCode}
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-sm font-medium">vs</span>
-                  <div
-                    className="w-10 h-10 text-white rounded-full flex items-center justify-center font-bold"
-                    style={{ backgroundColor: secondColor }}
-                  >
-                    {match.SecondBattingTeamCode}
+                  
+                  {/* Match Details */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
+                      📅 {match.MatchDateNew}
+                    </div>
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
+                      ⏰ {match.MatchTime}
+                    </div>
+                    <div className="text-xs text-purple-600 font-medium bg-purple-50 rounded-lg px-2 py-1">
+                      {match.MatchName}
+                    </div>
+                    <div className="text-xs text-gray-600 flex items-center gap-1">
+                      📍 {match.GroundName}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="text-sm font-semibold">
-                {match.MatchDateNew} — {match.MatchTime}
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-300 mt-1">
-                {match.MatchName}
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">
-                Venue: {match.GroundName}
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );

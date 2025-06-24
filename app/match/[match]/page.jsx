@@ -187,190 +187,326 @@ const page = async ({ params }) => {
     }
     return "Unknown Batsman";
   };
-
   const matchStatus = match.live ? "Match is live" : match.match_result;
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-primary to-secondary p-6">
-          <h1 className="text-3xl font-bold text-white">{match.series_name}</h1>
-        </div>
-
-        <div className=" p-8">
-          <h2 className="bg-rose-800 px-3 py-2 text-zinc-100 text-lg mb-3 font-bold">
-            {`${matchStatus}`} <br />
-            {!match.live
-              ? "Player Of The Match - " + match.award[0].player_name
-              : ""}
-          </h2>
-          <h3 className="text-2xl font-semibold mb-4">Scores</h3>
-          {match.scores.map((inning, index) => (
-            <div key={index} className="mb-6">
-              <h4 className="text-xl font-semibold text-primary mb-2">
-                {inning.team_name}
-              </h4>
-              <p className="text-lg text-gray-700">
-                <strong>Runs:</strong> {inning.team_runs}/{inning.team_wickets}{" "}
-                in {inning.team_overs} overs
-              </p>
-              <p className="text-lg text-gray-700">
-                <strong>Run Rate:</strong> {inning.run_rate}
-              </p>
-              {inning.target && (
-                <p className="text-lg text-gray-700">
-                  <strong>Target:</strong> {inning.target}
-                </p>
-              )}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl shadow-2xl overflow-hidden mb-8 transform hover:scale-[1.02] transition-transform duration-300">
+          <div className="p-8 text-white relative">
+            <div className="absolute inset-0 bg-black/20"></div>
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-4">
+                <h1 className="text-4xl font-bold">{match.series_name}</h1>
+                {match.live && (
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium">LIVE</span>
+                  </div>
+                )}
+              </div>
+              <div className="text-lg opacity-90">{formattedDate} • {match.venue}</div>
             </div>
-          ))}
-        </div>
-
-        <div className=" p-8">
-          <h3 className="text-2xl font-semibold mb-4">
-            First Innings Scorecard
-          </h3>
-          {scorecard.length > 0 ? (
-            scorecard.map((inning, index) => (
-              <div key={index} className="border-t border-gray-300 pt-4">
-                <h4 className="text-xl font-semibold text-primary mb-2">
-                  {teams[inning.Battingteam]?.Name_Full || "Unknown Team"}
-                </h4>
-                <p className="text-lg text-gray-700 mb-2">
-                  <strong>Total:</strong> {inning.Total}/{inning.Wickets} in{" "}
-                  {inning.Overs} overs
-                </p>
-                <p className="text-lg text-gray-700 mb-2">
-                  <strong>Run Rate:</strong> {inning.Runrate}
-                </p>
-                <table className="w-full text-left table-auto">
-                  <thead className="bg-slate-800">
-                    <tr>
-                      <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Batsman</th>
-                      <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Runs</th>
-                      <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Balls</th>
-                      <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Strike Rate</th>
-                      <th className="w-1/4 px-4 py-2 border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Dismissal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {inning.Batsmen.map((batsman, bIndex) => (
-                      <tr key={bIndex}>
-                        <td className="border px-4 py-2">
-                          {" "}
-                          {getBatsmanName(batsman.Batsman, inning.Battingteam)}
-                        </td>
-                        <td className="border px-4 py-2">{batsman.Runs}</td>
-                        <td className="border px-4 py-2">{batsman.Balls}</td>
-                        <td className="border px-4 py-2">
-                          {batsman.Strikerate}
-                        </td>
-                        <td className="border px-4 py-2">{batsman.Howout}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-700">No scorecard available.</p>
-          )}
-        </div>
-        {/* Bowling Table */}
-        <div className="bg-white p-4 md:p-8">
-          <h3 className="text-xl md:text-2xl font-semibold mb-4">
-            Bowling Scorecard
-          </h3>
-          {scorecard.length > 0 ? (
-            scorecard.map((inning, index) => (
-              <div key={index} className="border-t border-gray-300 pt-4">
-                <h4 className="text-lg md:text-xl font-semibold text-primary mb-2">
-                  {teams[inning.Bowlingteam]?.Name_Full || "Unknown Team"}
-                </h4>
-                <table className="w-full text-left table-auto">
-                  <thead className="bg-slate-800">
-                    <tr>
-                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Bowler</th>
-                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Overs</th>
-                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">
-                        Maidens
-                      </th>
-                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">Runs</th>
-                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">
-                        Wickets
-                      </th>
-                      <th className="px-2 py-2 text-sm md:text-base border border-slate-600 font-medium p-2 md:p-4 text-slate-200">
-                        Economy
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {inning.Bowlers.map((bowler, bIndex) => (
-                      <tr key={bIndex} className="border-b">
-                        <td className="px-2 py-2 text-sm md:text-base">
-                          {getBowlerName(bowler.Bowler, inning.Bowlingteam)}
-                        </td>
-                        <td className="px-2 py-2 text-sm md:text-base">
-                          {bowler.Overs}
-                        </td>
-                        <td className="px-2 py-2 text-sm md:text-base">
-                          {bowler.Maidens}
-                        </td>
-                        <td className="px-2 py-2 text-sm md:text-base">
-                          {bowler.Runs}
-                        </td>
-                        <td className="px-2 py-2 text-sm md:text-base">
-                          {bowler.Wickets}
-                        </td>
-                        <td className="px-2 py-2 text-sm md:text-base">
-                          {bowler.Economyrate}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-700">No bowling scorecard available.</p>
-          )}
-        </div>
-
-        <div className="bg-white p-8">
-          <h3 className="text-2xl font-semibold mb-4">
-            Commentary (Inning {currentInning})
-          </h3>
-          <div className="border-t border-gray-300 pt-4">
-            {validCommentary.length > 0 ? (
-              validCommentary.map((entry, index) => (
-                <div key={index} className="mb-4">
-                  <p className="text-lg font-semibold text-primary">
-                    Over {entry.Over}: {entry.Bowler_Name} to{" "}
-                    {entry.Batsman_Name} -{entry.Commentary}
-                  </p>
-                  <p className="text-gray-700">{entry.Ball_Event}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-700">No commentary available.</p>
-            )}
           </div>
         </div>
 
-        <div className="bg-white p-8">
-          <h3 className="text-2xl font-semibold mb-4">Match Details</h3>
-          <div className="text-gray-700">
-            <p>
-              <strong>Venue:</strong> {match.venue}
-            </p>
-            <p>
-              <strong>Date:</strong> {formattedDate} at {formattedTime}
-            </p>
-            <p>
-              <strong>Team A:</strong> {match.teama}
-            </p>
-            <p>
-              <strong>Team B:</strong> {match.teamb}
-            </p>
+        {/* Match Status */}
+        {matchStatus && (
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-xl shadow-lg mb-8 transform hover:shadow-xl transition-shadow duration-300">
+            <div className="flex items-center space-x-3">
+              <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div>
+                <div className="text-xl font-bold">{matchStatus}</div>
+                {!match.live && match.award?.[0]?.player_name && (
+                  <div className="text-green-100 mt-1">
+                    🏆 Player of the Match: {match.award[0].player_name}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Live Scores */}
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-slate-800 to-slate-700 px-8 py-6">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              🏏 Live Scores
+            </h2>
+          </div>
+          <div className="p-8 space-y-6">
+            {match.scores.map((inning, index) => (
+              <div key={index} className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 border-l-4 border-blue-500 transform hover:scale-[1.02] transition-all duration-300">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-bold text-slate-800 dark:text-white">
+                    {inning.team_name}
+                  </h3>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                      {inning.team_runs}/{inning.team_wickets}
+                    </div>
+                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                      {inning.team_overs} overs
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-white dark:bg-slate-800 rounded-lg p-4">
+                    <div className="text-sm text-slate-600 dark:text-slate-400">Run Rate</div>
+                    <div className="text-xl font-semibold text-slate-800 dark:text-white">
+                      {inning.run_rate}
+                    </div>
+                  </div>
+                  {inning.target && (
+                    <div className="bg-white dark:bg-slate-800 rounded-lg p-4">
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Target</div>
+                      <div className="text-xl font-semibold text-red-600 dark:text-red-400">
+                        {inning.target}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>        {/* Batting Scorecard */}
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-6">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              🏏 Batting Scorecard
+            </h2>
+          </div>
+          <div className="p-8">
+            {scorecard.length > 0 ? (
+              scorecard.map((inning, index) => (
+                <div key={index} className="mb-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-2xl font-bold text-slate-800 dark:text-white">
+                      {teams[inning.Battingteam]?.Name_Full || "Unknown Team"}
+                    </h3>
+                    <div className="text-right bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-600 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                        {inning.Total}/{inning.Wickets}
+                      </div>
+                      <div className="text-sm text-slate-600 dark:text-slate-300">
+                        {inning.Overs} overs • RR: {inning.Runrate}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="overflow-x-auto rounded-xl shadow-lg">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="bg-gradient-to-r from-slate-800 to-slate-700">
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-white">Batsman</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Runs</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Balls</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">4s/6s</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">SR</th>
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-white">Dismissal</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200 dark:divide-slate-600">
+                        {inning.Batsmen.map((batsman, bIndex) => (
+                          <tr key={bIndex} className="hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200">
+                            <td className="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                              {getBatsmanName(batsman.Batsman, inning.Battingteam)}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <span className="inline-flex items-center justify-center w-10 h-10 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full font-bold">
+                                {batsman.Runs}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-center text-sm text-slate-600 dark:text-slate-300">
+                              {batsman.Balls}
+                            </td>
+                            <td className="px-6 py-4 text-center text-sm text-slate-600 dark:text-slate-300">
+                              {batsman.Fours || 0}/{batsman.Sixes || 0}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                parseFloat(batsman.Strikerate) > 100 
+                                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                                  : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                              }`}>
+                                {batsman.Strikerate}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                              {batsman.Howout || 'Not Out'}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">🏏</div>
+                <p className="text-slate-600 dark:text-slate-400">No batting scorecard available.</p>
+              </div>
+            )}
+          </div>
+        </div>        {/* Bowling Scorecard */}
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 px-8 py-6">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              ⚡ Bowling Figures
+            </h2>
+          </div>
+          <div className="p-8">
+            {scorecard.length > 0 ? (
+              scorecard.map((inning, index) => (
+                <div key={index} className="mb-8">
+                  <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
+                    {teams[inning.Bowlingteam]?.Name_Full || "Unknown Team"}
+                  </h3>
+                  
+                  <div className="overflow-x-auto rounded-xl shadow-lg">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="bg-gradient-to-r from-slate-800 to-slate-700">
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-white">Bowler</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Overs</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Maidens</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Runs</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Wickets</th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white">Economy</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200 dark:divide-slate-600">
+                        {inning.Bowlers.map((bowler, bIndex) => (
+                          <tr key={bIndex} className="hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200">
+                            <td className="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                              {getBowlerName(bowler.Bowler, inning.Bowlingteam)}
+                            </td>
+                            <td className="px-6 py-4 text-center text-sm text-slate-600 dark:text-slate-300">
+                              {bowler.Overs}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-semibold">
+                                {bowler.Maidens}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-center text-sm text-slate-600 dark:text-slate-300">
+                              {bowler.Runs}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <span className="inline-flex items-center justify-center w-8 h-8 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full text-sm font-bold">
+                                {bowler.Wickets}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                parseFloat(bowler.Economyrate) < 6 
+                                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                                  : parseFloat(bowler.Economyrate) < 8 
+                                  ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                              }`}>
+                                {bowler.Economyrate}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">⚡</div>
+                <p className="text-slate-600 dark:text-slate-400">No bowling figures available.</p>
+              </div>
+            )}
+          </div>
+        </div>        {/* Commentary Section */}
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-6">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              💬 Live Commentary (Inning {currentInning})
+            </h2>
+          </div>
+          <div className="p-8">
+            {validCommentary.length > 0 ? (
+              <div className="space-y-4">
+                {validCommentary.map((entry, index) => (
+                  <div key={index} className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 border-l-4 border-purple-500 transform hover:scale-[1.02] transition-all duration-300">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                          Over {entry.Over}
+                        </span>
+                        <span className="text-sm text-slate-600 dark:text-slate-300">
+                          {entry.Bowler_Name} to {entry.Batsman_Name}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-slate-800 dark:text-white font-medium mb-2">
+                      {entry.Commentary}
+                    </p>
+                    {entry.Ball_Event && (
+                      <p className="text-sm text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800 rounded-lg p-3">
+                        {entry.Ball_Event}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">💬</div>
+                <p className="text-slate-600 dark:text-slate-400">No commentary available for this inning.</p>
+              </div>
+            )}
+          </div>
+        </div>        {/* Match Details */}
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-teal-600 to-cyan-600 px-8 py-6">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              📋 Match Information
+            </h2>
+          </div>
+          <div className="p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-white">Venue</h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 text-lg">{match.venue}</p>
+              </div>
+              
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-white">Match Time</h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300">
+                  <span className="block text-lg font-semibold">{formattedDate}</span>
+                  <span className="text-sm">{formattedTime}</span>
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-white">Team A</h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 text-lg font-semibold">{match.teama}</p>
+              </div>
+              
+              <div className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-white">Team B</h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 text-lg font-semibold">{match.teamb}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
