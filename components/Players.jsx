@@ -2,7 +2,7 @@
 
 
 const PlayersPage = async () => {
-  // Fetch data from multiple pages
+  return(
  <div>Hello</div>
   );
 };
