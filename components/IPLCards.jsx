@@ -175,7 +175,7 @@ const IPLCards = ({ data }) => {
                 {/* Interactive Elements */}
                 <div className="mt-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <Users className="w-4 h-4" />
+                    <IoPeople className="w-4 h-4" />
                     <span>View Details</span>
                   </div>
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
