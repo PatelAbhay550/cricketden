@@ -91,7 +91,7 @@ const PlayersClient = ({ players }) => {
               }}
             />
             <div className="absolute top-3 right-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Star className="w-4 h-4 text-yellow-500" />
+              <IoStar className="w-4 h-4 text-yellow-500" />
             </div>
           </div>
 
