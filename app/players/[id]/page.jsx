@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, Trophy, Star, Globe, Calendar, TrendingUp, Award, Target, Activity } from "lucide-react";
+import { IoArrowBack, IoTrophy, IoStar, IoGlobe, IoCalendar, IoTrendingUp, IoAward, IoTarget, IoActivity } from "react-icons/io5";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {
@@ -81,12 +81,11 @@ const PlayerPage = async ({ params }) => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
         <div className="text-center bg-white dark:bg-gray-800 p-12 rounded-2xl shadow-xl">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Player Not Found</h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">The player you're looking for doesn't exist.</p>
-          <Link 
+          <p className="text-gray-600 dark:text-gray-400 mb-6">The player you're looking for doesn't exist.</p>          <Link 
             href="/players" 
             className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <IoArrowBack className="w-4 h-4" />
             Back to Players
           </Link>
         </div>

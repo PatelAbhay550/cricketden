@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FaArrowLeft, FaCricketBall, FaTrophy } from "react-icons/fa";
-import { Sparkles, Crown } from "lucide-react";
+import { IoSparkles, IoCrown } from "react-icons/io5";
 
 const IPLHeader = () => {
   return (
@@ -17,14 +17,12 @@ const IPLHeader = () => {
         <div className="flex items-center justify-between">
           {/* Title Section */}
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
-                <Crown className="w-8 h-8 text-yellow-300" />
+            <div className="flex items-center gap-3">              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
+                <IoCrown className="w-8 h-8 text-yellow-300" />
               </div>
-              <div>
-                <h1 className="text-3xl font-bold flex items-center gap-2">
+              <div>                <h1 className="text-3xl font-bold flex items-center gap-2">
                   Indian Premier League
-                  <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
+                  <IoSparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
                 </h1>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-xl font-semibold text-blue-200">2024 Season</span>

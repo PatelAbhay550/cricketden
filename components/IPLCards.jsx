@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, MapPin, Trophy, Clock, Users, TrendingUp } from "lucide-react";
+import { IoCalendar, IoLocationSharp, IoTrophy, IoTime, IoPeople, IoTrendingUp } from "react-icons/io5";
 
 const getTeamColors = (teamCode) => {
   const colors = {
@@ -53,11 +53,11 @@ const formatMatchDate = (dateString) => {
 
 const getMatchStatus = (match) => {
   if (match.Commentss?.toLowerCase().includes('won')) {
-    return { status: 'completed', color: 'text-green-600', icon: Trophy };
+    return { status: 'completed', color: 'text-green-600', icon: IoTrophy };
   } else if (match.Commentss?.toLowerCase().includes('live')) {
-    return { status: 'live', color: 'text-red-500', icon: TrendingUp };
+    return { status: 'live', color: 'text-red-500', icon: IoTrendingUp };
   } else {
-    return { status: 'upcoming', color: 'text-blue-600', icon: Clock };
+    return { status: 'upcoming', color: 'text-blue-600', icon: IoTime };
   }
 };
 
@@ -98,13 +98,12 @@ const IPLCards = ({ data }) => {
               </div>
 
               <div className="relative p-6">
-                {/* Match Date & Time */}
-                <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
-                  <Calendar className="w-4 h-4" />
+                {/* Match Date & Time */}                <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
+                  <IoCalendar className="w-4 h-4" />
                   <span>{date}</span>
                   {time && (
                     <>
-                      <Clock className="w-4 h-4 ml-2" />
+                      <IoTime className="w-4 h-4 ml-2" />
                       <span>{time}</span>
                     </>
                   )}
@@ -191,9 +190,8 @@ const IPLCards = ({ data }) => {
       </div>
 
       {/* Summary Stats */}
-      <div className="mt-12 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <Trophy className="w-5 h-5 text-yellow-500" />
+      <div className="mt-12 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <IoTrophy className="w-5 h-5 text-yellow-500" />
           Tournament Summary
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

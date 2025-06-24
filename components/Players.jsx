@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useMemo } from "react";
-import { Search, Filter, Star, Globe, User, TrendingUp } from "lucide-react";
+import { IoSearch, IoFilter, IoStar, IoGlobe, IoPerson, IoTrendingUp } from "react-icons/io5";
 
 
 const PlayersPage = async () => {
@@ -101,15 +101,13 @@ const PlayersClient = ({ players }) => {
               {player.full_name}
             </h3>
             
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                <Globe className="w-4 h-4 text-blue-500" />
+            <div className="space-y-2">              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                <IoGlobe className="w-4 h-4 text-blue-500" />
                 <span className="font-medium">{player.nationality}</span>
               </div>
               
-              {player.role && (
-                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                  <User className="w-4 h-4 text-green-500" />
+              {player.role && (                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                  <IoPerson className="w-4 h-4 text-green-500" />
                   <span>{player.role}</span>
                 </div>
               )}
@@ -144,13 +142,11 @@ const PlayersClient = ({ players }) => {
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Discover profiles, stats, and career highlights of international cricket stars
             </p>
-            <div className="flex items-center justify-center gap-4 text-sm text-blue-200">
-              <div className="flex items-center gap-1">
-                <TrendingUp className="w-4 h-4" />
+            <div className="flex items-center justify-center gap-4 text-sm text-blue-200">              <div className="flex items-center gap-1">
+                <IoTrendingUp className="w-4 h-4" />
                 <span>{filteredPlayers.length} Players</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Globe className="w-4 h-4" />
+              </div><div className="flex items-center gap-1">
+                <IoGlobe className="w-4 h-4" />
                 <span>{countries.length} Countries</span>
               </div>
             </div>
@@ -162,9 +158,8 @@ const PlayersClient = ({ players }) => {
         {/* Search and Filters */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-8 border border-gray-200 dark:border-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {/* Search */}
-            <div className="relative md:col-span-2">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            {/* Search */}            <div className="relative md:col-span-2">
+              <IoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search players by name..."
@@ -174,9 +169,8 @@ const PlayersClient = ({ players }) => {
               />
             </div>
 
-            {/* Role Filter */}
-            <div className="relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            {/* Role Filter */}            <div className="relative">
+              <IoFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <select
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
@@ -191,9 +185,8 @@ const PlayersClient = ({ players }) => {
               </select>
             </div>
 
-            {/* Country Filter */}
-            <div className="relative">
-              <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            {/* Country Filter */}            <div className="relative">
+              <IoGlobe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
@@ -248,9 +241,8 @@ const PlayersClient = ({ players }) => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-12 max-w-md mx-auto border border-gray-200 dark:border-gray-700">
-              <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <div className="text-center py-16">            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-12 max-w-md mx-auto border border-gray-200 dark:border-gray-700">
+              <IoSearch className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No Players Found</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Try adjusting your search criteria or filters
