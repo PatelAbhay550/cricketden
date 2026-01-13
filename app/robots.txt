@@ -2,4 +2,5 @@ User-Agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://cricketden.vercel.app/sitemap.xml
+Sitemap: https://cricketden.live/sitemap.xml
+
