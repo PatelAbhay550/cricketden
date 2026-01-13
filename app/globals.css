@@ -76,7 +76,9 @@ html {
   outline: 2px solid #8B1538;
   outline-offset: 2px;
 }
-
+@view-transition {
+  navigation: auto;
+}
 /* Loading shimmer effect */
 @keyframes shimmer {
   0% { background-position: -468px 0; }
@@ -88,3 +90,4 @@ html {
   background-size: 400% 100%;
   animation: shimmer 1.2s ease-in-out infinite;
 }
+
