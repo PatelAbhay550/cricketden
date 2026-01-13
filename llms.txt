@@ -1,0 +1,97 @@
+# CricketDen - Live Cricket Scores and News
+
+> A modern cricket website providing live scores, match updates, player statistics, ICC rankings, and cricket news.
+
+## About
+
+CricketDen (cricketden.live) is a comprehensive cricket platform built with Next.js that offers:
+
+- **Live Scores**: Real-time cricket match scores and updates
+- **Tournament Coverage**: IPL 2024/2025, SA20 2025/2026, Champions Trophy 2025
+- **ICC Rankings**: Player rankings for batters, bowlers, all-rounders, and team rankings across all formats (Test, ODI, T20I)
+- **Player Profiles**: Detailed information about cricket players
+- **Match Coverage**: Ball-by-ball commentary and match timelines
+- **Cricket Blogs**: Latest news, analysis, and updates from the cricket world
+- **Interactive Quizzes**: Test cricket knowledge with unique records quizzes
+
+## Technology Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS with custom red-based theme
+- **Features**: Server-side rendering, dynamic routing, dark mode support
+- **Data Sources**: ICC Sports API, Livescore API, Sportz.io Rankings API
+
+## Design System
+
+**Color Palette:**
+- Primary: Deep Maroon (#8B1538)
+- Secondary: Dark Slate (#2D3436)
+- Accent: Bright Red (#E74C3C)
+- Background: Light Gray (#FAFAFA)
+- Full dark mode support
+
+## Key Features
+
+### Live Match Coverage
+- Real-time score updates
+- Ball-by-ball commentary
+- Match timelines and key moments
+- Team lineups and player stats
+
+### Tournament Pages
+- IPL 2024/2025: Matches, points table, squads, statistics
+- SA20 2025/2026: Fixtures, standings
+- Champions Trophy 2025: Schedule and results
+
+### Rankings
+- ICC Player Rankings: Batters, Bowlers, All-Rounders
+- Team Rankings: Test, ODI, T20I
+- Updated weekly with change indicators
+
+### Content
+- Cricket blogs and articles
+- Live blogs for major matches
+- Player profiles and career statistics
+- Cricket quizzes and trivia
+
+## Site Structure
+
+```
+/                          - Homepage with live scores
+/Blogs                     - Cricket news and articles
+/live-blogs                - Live match blogs
+/champions-trophy-2025     - CT2025 tournament
+/ipl2024, /ipl2025         - IPL tournaments
+/sa20-2025, /sa20-2026     - SA20 tournaments
+/rankings                  - ICC rankings (batters, bowlers, all-rounders, teams)
+/players                   - Player profiles
+/match/[match]             - Individual match pages
+/quiz                      - Cricket quizzes
+/ContactUs                 - Contact page
+/privacy, /Terms           - Legal pages
+```
+
+## API Integration
+
+- **Cricket Scores**: ICC Sports API for match data
+- **SA20 Data**: Livescore API for South African league
+- **Rankings**: Sportz.io ICC rankings endpoint
+- All data fetched server-side for optimal performance
+
+## Responsive Design
+
+- Mobile-first approach
+- Optimized for all screen sizes
+- Touch-friendly interfaces
+- Fast loading times with Next.js optimization
+
+## SEO & Performance
+
+- Dynamic sitemap generation
+- Optimized meta tags and Open Graph
+- Server-side rendering for SEO
+- Efficient caching strategies
+
+---
+
+Built with ❤️ for cricket fans worldwide.
