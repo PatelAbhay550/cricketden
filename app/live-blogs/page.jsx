@@ -28,12 +28,12 @@ const LiveBlogs = async () => {
   };
 
   return (
-    <div className="px-3">
+    <div className="px-3 py-6 bg-gray-50 dark:bg-dark min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className="blog-card bg-white shadow-md rounded-lg overflow-hidden "
+            className="blog-card bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden"
           >
             <Link href={`/live-blogs/${blog.slug}`}>
               <div className="relative w-full h-48 overflow-hidden">
@@ -44,15 +44,15 @@ const LiveBlogs = async () => {
                 />
               </div>
               <div className="p-4">
-                <p className="text-sm text-gray-500">{blog.category}</p>
-                <h3 className="text-lg font-bold mt-2">{blog.name}</h3>
-                <p className="text-gray-600 text-sm mt-1">
+                <p className="text-sm text-gray-500 dark:text-gray-400">{blog.category}</p>
+                <h3 className="text-lg font-bold mt-2 dark:text-white">{blog.name}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
                   {truncate(
                     blog.description || "No description available.",
                     100
                   )}
                 </p>
-                <p className="text-gray-500 text-xs mt-2">
+                <p className="text-gray-500 dark:text-gray-400 text-xs mt-2">
                   {new Date(
                     blog.publish_date.seconds * 1000
                   ).toLocaleDateString()}

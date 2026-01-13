@@ -60,14 +60,14 @@ const UniqueRecords = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
-      <div className="bg-white rounded-xl shadow-md p-6 w-full max-w-2xl space-y-6 border">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark flex items-center justify-center px-4 py-10">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 w-full max-w-2xl space-y-6 border border-gray-200 dark:border-gray-700">
         {!showResult ? (
           <>
-            <h2 className="text-2xl font-bold text-blue-700">
+            <h2 className="text-2xl font-bold text-primary dark:text-accent-light">
               Question {currentQ + 1} of {questions.length}
             </h2>
-            <p className="text-lg font-medium text-gray-800">{questions[currentQ].question}</p>
+            <p className="text-lg font-medium text-gray-800 dark:text-gray-200">{questions[currentQ].question}</p>
 
             <div className="space-y-3">
               {questions[currentQ].options.map((option, idx) => (
@@ -76,8 +76,8 @@ const UniqueRecords = () => {
                   onClick={() => handleOptionClick(option)}
                   className={`w-full text-left px-4 py-2 rounded-lg border transition ${
                     selected === option
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-white hover:bg-blue-50 border-gray-300'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white dark:bg-gray-700 hover:bg-primary/10 border-gray-300 dark:border-gray-600 dark:text-gray-200'
                   }`}
                 >
                   {option}
@@ -88,21 +88,21 @@ const UniqueRecords = () => {
             <button
               onClick={handleNext}
               disabled={!selected}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition disabled:opacity-50"
             >
               {currentQ === questions.length - 1 ? 'Finish' : 'Next'}
             </button>
           </>
         ) : (
           <div className="text-center space-y-6">
-            <h2 className="text-3xl font-bold text-green-600">🎉 Quiz Completed!</h2>
-            <p className="text-lg text-gray-700">
+            <h2 className="text-3xl font-bold text-green-600 dark:text-green-400">🎉 Quiz Completed!</h2>
+            <p className="text-lg text-gray-700 dark:text-gray-300">
               You scored <span className="font-semibold">{score}</span> out of{' '}
               <span className="font-semibold">{questions.length}</span>
             </p>
             <button
               onClick={handleRestart}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition"
             >
               Retake Quiz
             </button>

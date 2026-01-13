@@ -135,13 +135,13 @@ const BlogPage = async ({ params }) => {
         />
         {/* Header Section */}
         <header className="mb-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-blue-600">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-primary dark:text-white">
             {blog.name}
           </h1>
-          <p className="text-gray-600 text-sm text-center mt-2">
+          <p className="text-gray-600 dark:text-gray-400 text-sm text-center mt-2">
             Published on{" "}
             {new Date(blog.publish_date.seconds * 1000).toLocaleDateString()} |{" "}
-            <span className="font-semibold text-gray-800">{blog.author}</span>
+            <span className="font-semibold text-gray-800 dark:text-gray-200">{blog.author}</span>
           </p>
         </header>
 
@@ -171,11 +171,11 @@ const BlogPage = async ({ params }) => {
         <h1 className="text-3xl font-bold text-red-600 mb-4">
           404 - Blog Not Found
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           The blog you are looking for does not exist or may have been removed.
         </p>
         <Link href="/blogs">
-          <p className="inline-block mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+          <p className="inline-block mt-6 bg-primary text-white px-6 py-2 rounded-lg shadow-md hover:bg-primary/90 transition duration-200">
             ← Back to Blogs
           </p>
         </Link>

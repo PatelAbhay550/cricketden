@@ -25,13 +25,13 @@ export const metadata = {
 
 const page = () => {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6 flex items-center justify-center">
-      <div className="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full border space-y-8">
+    <main className="min-h-screen bg-gray-50 dark:bg-dark p-4 flex items-center justify-center">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 max-w-3xl w-full border border-gray-200 dark:border-gray-700 space-y-6">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-800 mb-4">
-            🏏 Test Cricket Unique Records Quiz
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-3">
+            Test Cricket Unique Records Quiz
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             Think you know Test cricket? Take this quiz and explore some of the most unique records in the game's history.
           </p>
         </div>

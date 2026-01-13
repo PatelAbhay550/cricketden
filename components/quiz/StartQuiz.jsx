@@ -10,17 +10,17 @@ const StartQuiz = () => {
     <>
       <button
         onClick={() => setShowQuiz(true)}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-all font-medium"
+        className="bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary/90 transition-all font-medium"
       >
         🎯 Start Quiz
       </button>
 
       {showQuiz && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-xl shadow-xl max-w-xl w-full relative">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl max-w-xl w-full relative">
             <button
               onClick={() => setShowQuiz(false)}
-              className="absolute top-16 text-2xl font-bold right-12 text-gray-500 hover:text-gray-700"
+              className="absolute top-16 text-2xl font-bold right-12 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             >
               ✖
             </button>

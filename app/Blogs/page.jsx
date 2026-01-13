@@ -27,18 +27,18 @@ const page = async () => {
       return text;
     };
   return (
-    <div className="min-h-screen px-4 py-8 bg-gray-50">
+    <div className="min-h-screen px-4 py-8 bg-gray-50 dark:bg-dark">
       <div className="blog px-4 md:px-20 mb-8 text-center">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-blue-600">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-white">
         CricketDen Blogs - Latest Cricket Blogs and Analysis
         </h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
         Read the latest cricket blogs and analysis on CricketDen. Stay updated with the latest cricket news, match previews, and more. 
         </p>
       </div>
       <div className="main px-2 flex flex-col items-center justify-center mt-4">
         {/* Featured Section */}
-        <div className="featured px-3 w-full md:w-[70vw] bg-white shadow-md rounded-lg flex flex-col md:flex-row items-center overflow-hidden">
+        <div className="featured px-3 w-full md:w-[70vw] bg-white dark:bg-gray-800 shadow-md rounded-lg flex flex-col md:flex-row items-center overflow-hidden">
           <div className="imgarea flex w-full md:w-1/2">
             <img
               className="w-full md:w-3/4 aspect-square object-cover rounded-lg transition-transform duration-300 hover:scale-105"
@@ -48,14 +48,14 @@ const page = async () => {
             />
           </div>
           <div className="textarea w-full md:w-1/2 p-6">
-            <h2 className="text-lg md:text-xl font-bold mb-2">
+            <h2 className="text-lg md:text-xl font-bold mb-2 dark:text-white">
               {featuredblog.title}
             </h2>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               {truncate(featuredblog.desc || "No description available.", 200)}
             </p>
             <Link href={`/Blogs/${featuredblog.slug}`}>
-            <button className="btn px-4 py-2 text-white rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors duration-300">
+            <button className="btn px-4 py-2 text-white rounded-lg bg-primary hover:bg-primary/90 transition-colors duration-200">
               Read Full Story
             </button>
             </Link>

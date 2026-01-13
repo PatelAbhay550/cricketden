@@ -34,7 +34,7 @@ const ShareQuiz = ({ link }) => {
     <div className="text-center">
       <button
         onClick={handleShare}
-        className="bg-white text-blue-600 border border-blue-600 px-5 py-2 rounded-full shadow-sm hover:bg-blue-600 hover:text-white transition-all font-semibold"
+        className="bg-white dark:bg-gray-800 text-primary dark:text-accent-light border border-primary dark:border-accent-light px-5 py-2 rounded-full shadow-sm hover:bg-primary hover:text-white dark:hover:bg-primary transition-all font-semibold"
       >
         🔗 Share Quiz
       </button>

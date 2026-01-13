@@ -18,8 +18,8 @@ const Page = async () => {
     const upcomingmatches = updata.data;
     console.log(upcomingmatches)
     return (
-        <main className='w-full min-h-screen bg-[#00E000] p-6'>
-            <h1 className='text-4xl font-bold mb-8 text-center'>Champions Trophy 2025</h1>
+        <main className='w-full min-h-screen bg-gray-50 dark:bg-dark p-6'>
+            <h1 className='text-4xl font-bold mb-8 text-center text-primary dark:text-white'>Champions Trophy 2025</h1>
             <div className='grid grid-cols-1 gap-6'>
                 {matches.matches.map((match, index) => (
                     <Link  href={`/champions-trophy-2025/m/${match.match_id}`} key={index}>

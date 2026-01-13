@@ -3,18 +3,18 @@ import { IoCalendar, IoLocationSharp, IoTrophy, IoTime, IoPeople, IoTrendingUp }
 
 const getTeamColors = (teamCode) => {
   const colors = {
-    'MI': 'from-blue-600 to-blue-800',
-    'CSK': 'from-yellow-500 to-yellow-600',
-    'RCB': 'from-red-600 to-red-800',
-    'KKR': 'from-purple-600 to-purple-800',
-    'DC': 'from-blue-500 to-indigo-600',
-    'PBKS': 'from-red-500 to-pink-600',
-    'RR': 'from-pink-500 to-rose-600',
-    'SRH': 'from-orange-500 to-orange-600',
-    'GT': 'from-teal-500 to-cyan-600',
-    'LSG': 'from-cyan-500 to-blue-500'
+    'MI': 'bg-blue-600',
+    'CSK': 'bg-yellow-500',
+    'RCB': 'bg-red-600',
+    'KKR': 'bg-purple-600',
+    'DC': 'bg-blue-500',
+    'PBKS': 'bg-red-500',
+    'RR': 'bg-pink-500',
+    'SRH': 'bg-orange-500',
+    'GT': 'bg-teal-500',
+    'LSG': 'bg-cyan-500'
   };
-  return colors[teamCode] || 'from-gray-500 to-gray-600';
+  return colors[teamCode] || 'bg-gray-500';
 };
 
 const getTeamLogo = (teamCode) => {
@@ -55,9 +55,9 @@ const getMatchStatus = (match) => {
   if (match.Commentss?.toLowerCase().includes('won')) {
     return { status: 'completed', color: 'text-green-600', icon: IoTrophy };
   } else if (match.Commentss?.toLowerCase().includes('live')) {
-    return { status: 'live', color: 'text-red-500', icon: IoTrendingUp };
+    return { status: 'live', color: 'text-accent', icon: IoTrendingUp };
   } else {
-    return { status: 'upcoming', color: 'text-blue-600', icon: IoTime };
+    return { status: 'upcoming', color: 'text-primary', icon: IoTime };
   }
 };
 
@@ -66,17 +66,17 @@ const IPLCards = ({ data }) => {
 
   if (!matches.length) {
     return (
-      <div className="text-center py-16">
-        <div className="text-gray-400 text-6xl mb-4">🏏</div>
-        <h3 className="text-xl font-semibold text-gray-600 mb-2">No matches found</h3>
-        <p className="text-gray-500">Check back later for match updates</p>
+      <div className="text-center py-12">
+        <div className="text-gray-400 text-4xl mb-3">🏏</div>
+        <h3 className="text-lg font-semibold text-gray-600 mb-1">No matches found</h3>
+        <p className="text-gray-500 text-sm">Check back later for match updates</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+    <div className="space-y-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
         {matches.map((match, index) => {
           const { date, time } = formatMatchDate(match.GMTMatchDate);
           const { status, color, icon: StatusIcon } = getMatchStatus(match);
@@ -84,120 +84,91 @@ const IPLCards = ({ data }) => {
           return (
             <div
               key={index}
-              className="group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700"
             >
-              {/* Background Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Match Status Badge */}
-              <div className="absolute top-4 right-4 z-10">
-                <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${color} bg-white/90 backdrop-blur-sm shadow-sm`}>
-                  <StatusIcon className="w-3 h-3" />
-                  {status === 'live' ? 'LIVE' : status === 'completed' ? 'FINISHED' : 'UPCOMING'}
-                </div>
-              </div>
-
-              <div className="relative p-6">
-                {/* Match Date & Time */}                <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
-                  <IoCalendar className="w-4 h-4" />
+              {/* Match Header */}
+              <div className="flex items-center justify-between px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-xs">
+                  <IoCalendar className="w-3 h-3" />
                   <span>{date}</span>
                   {time && (
                     <>
-                      <IoTime className="w-4 h-4 ml-2" />
+                      <IoTime className="w-3 h-3 ml-1" />
                       <span>{time}</span>
                     </>
                   )}
                 </div>
+                <div className={`flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold ${color} bg-gray-50 dark:bg-gray-700`}>
+                  <StatusIcon className="w-3 h-3" />
+                  {status === 'live' ? 'LIVE' : status === 'completed' ? 'RESULT' : 'UPCOMING'}
+                </div>
+              </div>
 
+              <div className="p-4">
                 {/* Teams Section */}
-                <div className="space-y-4 mb-6">
+                <div className="space-y-3 mb-3">
                   {/* Team 1 */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${getTeamColors(match.FirstBattingTeamCode)} flex items-center justify-center text-white text-xl font-bold shadow-lg`}>
-                        {getTeamLogo(match.FirstBattingTeamCode)}
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full ${getTeamColors(match.FirstBattingTeamCode)} flex items-center justify-center text-white text-sm font-bold`}>
+                        {match.FirstBattingTeamCode?.charAt(0)}
                       </div>
-                      <div>
-                        <h3 className="font-bold text-lg text-gray-800">
-                          {match.FirstBattingTeamCode}
-                        </h3>
-                        <p className="text-sm text-gray-500">Team 1</p>
-                      </div>
+                      <h3 className="font-semibold text-gray-800 dark:text-white">
+                        {match.FirstBattingTeamCode}
+                      </h3>
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-gray-800">
-                        {match.FirstBattingSummary || '--'}
-                      </div>
+                    <div className="text-lg font-bold text-gray-800 dark:text-white">
+                      {match.FirstBattingSummary || '--'}
                     </div>
                   </div>
 
                   {/* VS Divider */}
                   <div className="flex items-center justify-center">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-                    <span className="px-4 text-sm font-semibold text-gray-400 bg-gray-50 rounded-full">VS</span>
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+                    <div className="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
+                    <span className="px-3 text-xs font-medium text-gray-400">vs</span>
+                    <div className="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
                   </div>
 
                   {/* Team 2 */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${getTeamColors(match.SecondBattingTeamCode)} flex items-center justify-center text-white text-xl font-bold shadow-lg`}>
-                        {getTeamLogo(match.SecondBattingTeamCode)}
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full ${getTeamColors(match.SecondBattingTeamCode)} flex items-center justify-center text-white text-sm font-bold`}>
+                        {match.SecondBattingTeamCode?.charAt(0)}
                       </div>
-                      <div>
-                        <h3 className="font-bold text-lg text-gray-800">
-                          {match.SecondBattingTeamCode}
-                        </h3>
-                        <p className="text-sm text-gray-500">Team 2</p>
-                      </div>
+                      <h3 className="font-semibold text-gray-800 dark:text-white">
+                        {match.SecondBattingTeamCode}
+                      </h3>
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-gray-800">
-                        {match.SecondBattingSummary || '--'}
-                      </div>
+                    <div className="text-lg font-bold text-gray-800 dark:text-white">
+                      {match.SecondBattingSummary || '--'}
                     </div>
                   </div>
                 </div>
 
                 {/* Match Result/Status */}
                 {match.Commentss && (
-                  <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 text-center">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <StatusIcon className={`w-4 h-4 ${color}`} />
-                      <span className="text-sm font-medium text-gray-600">Match Result</span>
-                    </div>
-                    <p className={`font-semibold ${color}`}>
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded px-3 py-2 text-center">
+                    <p className={`text-sm font-medium ${color}`}>
                       {match.Commentss}
                     </p>
                   </div>
                 )}
-
-                {/* Interactive Elements */}
-                <div className="mt-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <IoPeople className="w-4 h-4" />
-                    <span>View Details</span>
-                  </div>
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-                </div>
               </div>
-
-              {/* Hover Effect Border */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300 pointer-events-none" />
             </div>
           );
         })}
       </div>
 
       {/* Summary Stats */}
-      <div className="mt-12 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <IoTrophy className="w-5 h-5 text-yellow-500" />
+      <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow p-4 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
+          <IoTrophy className="w-4 h-4 text-accent" />
           Tournament Summary
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">{matches.length}</div>
-            <div className="text-sm text-gray-500">Total Matches</div>
+            <div className="text-xl font-bold text-primary">{matches.length}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">Total Matches</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">
@@ -206,16 +177,16 @@ const IPLCards = ({ data }) => {
             <div className="text-sm text-gray-500">Completed</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-red-600">
+            <div className="text-xl font-bold text-accent">
               {matches.filter(m => m.Commentss?.toLowerCase().includes('live')).length}
             </div>
-            <div className="text-sm text-gray-500">Live</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">Live</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-gray-600">
+            <div className="text-xl font-bold text-muted">
               {matches.filter(m => !m.Commentss || (!m.Commentss.toLowerCase().includes('won') && !m.Commentss.toLowerCase().includes('live'))).length}
             </div>
-            <div className="text-sm text-gray-500">Upcoming</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">Upcoming</div>
           </div>
         </div>
       </div>

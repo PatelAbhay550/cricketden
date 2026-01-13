@@ -89,25 +89,24 @@ const HomePage = async () => {
     .filter((match) => match.match_status === "Match Ended")
     .slice(0, 6); // Get the top 4 matches
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen dark:bg-dark">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-primary via-secondary to-accent text-white py-16 mb-8">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-            Welcome to <span className="text-yellow-300">CricketDen</span>
+      <div className="bg-primary text-white py-8 mb-6">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-2xl md:text-4xl font-bold mb-2">
+            Welcome to <span className="text-accent-light">CricketDen</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-6 text-blue-100">
-            Your ultimate destination for live cricket scores, match updates & cricket blogs
+          <p className="text-base md:text-lg text-white/80">
+            Your destination for live cricket scores, match updates & analysis
           </p>
-          <div className="flex justify-center space-x-4">
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-              <span className="text-sm font-medium">Live Matches</span>
-              <div className="text-2xl font-bold">{liveMatches.length}</div>
+          <div className="flex justify-center gap-6 mt-4">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-accent-light">{liveMatches.length}</div>
+              <span className="text-sm text-white/70">Live</span>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-              <span className="text-sm font-medium">Upcoming</span>
-              <div className="text-2xl font-bold">{upcomingMatches.length}</div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-accent-light">{upcomingMatches.length}</div>
+              <span className="text-sm text-white/70">Upcoming</span>
             </div>
           </div>
         </div>
@@ -115,46 +114,44 @@ const HomePage = async () => {
 
       <main className="container mx-auto px-4 pb-8">
         {/* Live Matches Section */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold flex items-center gap-3 text-primary">
-              <div className="relative">
-                <TbLiveView className="text-red-500 text-4xl" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              </div>
+        <section className="mb-10">
+          <div className="flex items-center justify-between mb-4 border-b-2 border-primary pb-2">
+            <h2 className="text-xl font-bold flex items-center gap-2 text-secondary dark:text-white">
+              <TbLiveView className="text-accent text-2xl" />
               Live Matches
             </h2>
-            <span className="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">
-              {liveMatches.length} Live
+            <span className="bg-accent text-white text-xs font-semibold px-2 py-1 rounded">
+              {liveMatches.length} LIVE
             </span>
-          </div>          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {liveMatches.length > 0 ? (
               liveMatches.map((match, index) => (
                 <Link key={match.match_id} href={`/match/${match.match_id}`}>
-                  <div className="group bg-white hover:bg-gray-50 shadow-lg hover:shadow-2xl rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                  <div className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 shadow rounded-lg p-4 transition-all duration-200 border border-gray-200 dark:border-gray-700">
                     {/* Live indicator */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
-                        🔴 LIVE
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="bg-accent text-white text-xs font-bold px-2 py-0.5 rounded">
+                        LIVE
                       </span>
-                      <div className="w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
+                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
                     </div>
                     
                     {/* Series info */}
-                    <div className="text-center mb-4">
-                      <h3 className="text-sm font-bold text-indigo-600 bg-indigo-50 rounded-lg px-3 py-1 inline-block">
+                    <div className="text-center mb-3">
+                      <h3 className="text-xs font-semibold text-primary dark:text-accent-light">
                         {match.series_name}
                       </h3>
-                      <p className="text-gray-500 text-xs mt-2 flex items-center justify-center gap-1">
-                        📍 {match.venue}
+                      <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
+                        {match.venue}
                       </p>
                     </div>
 
                     {/* Teams and Scores */}
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <div className="text-left flex-1">
-                          <h3 className="text-lg font-bold text-gray-800 mb-1">
+                          <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                             {match.teama_display_name}
                           </h3>
                           {match.scores
@@ -163,25 +160,21 @@ const HomePage = async () => {
                                 score.team_display_name === match.teama_display_name
                             )
                             .map((score, index) => (
-                              <div key={index} className="space-y-1">
-                                <p className="text-2xl font-bold text-green-600">
+                              <div key={index}>
+                                <p className="text-lg font-bold text-secondary dark:text-white">
                                   {score.team_runs}/{score.team_wickets}
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                  ({score.team_overs} overs)
+                                  <span className="text-xs font-normal text-gray-500 ml-1">({score.team_overs})</span>
                                 </p>
                               </div>
                             ))}
                         </div>
                         
-                        <div className="mx-4 text-center">
-                          <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                            VS
-                          </div>
+                        <div className="mx-3 text-center">
+                          <span className="text-xs font-bold text-gray-400">vs</span>
                         </div>
                         
                         <div className="text-right flex-1">
-                          <h3 className="text-lg font-bold text-gray-800 mb-1">
+                          <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                             {match.teamb_display_name}
                           </h3>
                           {match.scores
@@ -190,12 +183,10 @@ const HomePage = async () => {
                                 score.team_display_name === match.teamb_display_name
                             )
                             .map((score, index) => (
-                              <div key={index} className="space-y-1">
-                                <p className="text-2xl font-bold text-green-600">
+                              <div key={index}>
+                                <p className="text-lg font-bold text-secondary dark:text-white">
                                   {score.team_runs}/{score.team_wickets}
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                  ({score.team_overs} overs)
+                                  <span className="text-xs font-normal text-gray-500 ml-1">({score.team_overs})</span>
                                 </p>
                               </div>
                             ))}
@@ -204,8 +195,8 @@ const HomePage = async () => {
                     </div>
 
                     {/* Match Status */}
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <p className="text-center text-sm font-medium text-blue-600 bg-blue-50 rounded-lg py-2">
+                    <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-600">
+                      <p className="text-center text-xs font-medium text-primary dark:text-accent-light">
                         {match.match_status}
                       </p>
                     </div>
@@ -213,167 +204,162 @@ const HomePage = async () => {
                 </Link>
               ))
             ) : (
-              <div className="col-span-full text-center py-12">
-                <div className="text-6xl mb-4">🏏</div>
-                <p className="text-xl text-gray-500 mb-2">No live matches at the moment</p>
-                <p className="text-gray-400">Check back soon for live cricket action!</p>
+              <div className="col-span-full text-center py-8">
+                <p className="text-lg text-gray-500 dark:text-gray-400">No live matches at the moment</p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Check back soon for live cricket action!</p>
               </div>
             )}
           </div>
-        </section>        {/* IPL 2025 Bar */}
-        <div className="mb-12">
+        </section>
+
+        {/* IPL 2025 Bar */}
+        <div className="mb-10">
           <IPL2025Bar/>
         </div>
 
         {/* Blogs Section */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold flex items-center gap-3 text-primary">
-              <TbBrandBlogger className="text-orange-500 text-4xl" />
-              Cricket Blogs & Analysis
+        <section className="mb-10">
+          <div className="flex items-center justify-between mb-4 border-b-2 border-primary pb-2">
+            <h2 className="text-xl font-bold flex items-center gap-2 text-secondary dark:text-white">
+              <TbBrandBlogger className="text-accent text-2xl" />
+              Cricket Blogs
             </h2>
-            <Link href="/Blogs" className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2 transition-colors">
-              View All <span>→</span>
+            <Link href="/Blogs" className="text-primary dark:text-accent-light hover:text-accent text-sm font-medium transition-colors">
+              View All →
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {blogs.slice(0, 6).map((blog, index) => (
               <Link key={blog.id} href={`/Blogs/${blog.slug}`}>
-                <article className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden border border-gray-100">
-                  <div className="relative overflow-hidden">
+                <article className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700">
+                  <div className="relative">
                     <img
                       src={blog.coverimage}
                       alt={blog.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-40 object-cover"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <div className="absolute top-2 left-2">
+                      <span className="bg-primary text-white text-xs font-semibold px-2 py-0.5 rounded">
                         {blog.category}
                       </span>
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                  <div className="p-4">
+                    <h3 className="text-base font-semibold text-gray-800 dark:text-white mb-2 line-clamp-2 hover:text-primary dark:hover:text-accent-light transition-colors">
                       {blog.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                      {truncate(blog.desc || "No description available.", 120)}
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                      {truncate(blog.desc || "No description available.", 100)}
                     </p>
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span className="flex items-center gap-1">
-                        📅 {new Date(blog.timestamp.seconds * 1000).toLocaleDateString()}
-                      </span>
-                      <span className="text-blue-600 font-medium">Read More →</span>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>{new Date(blog.timestamp.seconds * 1000).toLocaleDateString()}</span>
+                      <span className="text-primary dark:text-accent-light font-medium">Read More →</span>
                     </div>
                   </div>
                 </article>
               </Link>
             ))}
           </div>
-        </section>        {/* Upcoming Matches Section */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">⏰</span>
-              </div>
+        </section>
+
+        {/* Upcoming Matches Section */}
+        <section className="mb-10">
+          <div className="flex items-center justify-between mb-4 border-b-2 border-primary pb-2">
+            <h2 className="text-xl font-bold text-secondary dark:text-white flex items-center gap-2">
+              <span className="text-accent">⏰</span>
               Upcoming Matches
             </h2>
-            <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+            <span className="text-xs text-gray-500 dark:text-gray-400">
               Next 5 Days
             </span>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {upcomingMatches.length > 0 ? (
               upcomingMatches.map((match, index) => (
                 <div
                   key={match.match_id}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:border-blue-200"
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-200 p-4 border border-gray-200 dark:border-gray-700"
                 >
-                  <div className="text-center mb-4">
-                    <h3 className="text-sm font-bold text-blue-600 bg-blue-50 rounded-lg px-3 py-1 inline-block mb-2">
+                  <div className="text-center mb-3">
+                    <h3 className="text-xs font-semibold text-primary dark:text-accent-light mb-1">
                       {match.series_name}
                     </h3>
-                    <p className="text-gray-500 text-xs flex items-center justify-center gap-1">
-                      📍 {match.venue}
+                    <p className="text-gray-500 dark:text-gray-400 text-xs">
+                      {match.venue}
                     </p>
                   </div>
                   
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-center mb-3">
                     <div className="text-center flex-1">
-                      <h3 className="text-lg font-bold text-gray-800">
+                      <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                         {match.teama_display_name}
                       </h3>
                     </div>
-                    <div className="mx-4 text-center">
-                      <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        VS
-                      </div>
+                    <div className="mx-3 text-center">
+                      <span className="text-xs font-bold text-gray-400">vs</span>
                     </div>
                     <div className="text-center flex-1">
-                      <h3 className="text-lg font-bold text-gray-800">
+                      <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                         {match.teamb_display_name}
                       </h3>
                     </div>
                   </div>
                   
-                  <div className="text-center mt-4 pt-4 border-t border-gray-100">
-                    <p className="text-sm font-medium text-purple-600 bg-purple-50 rounded-lg py-2">
+                  <div className="text-center pt-3 border-t border-gray-100 dark:border-gray-600">
+                    <p className="text-xs font-medium text-muted dark:text-gray-400">
                       {match.match_status}
                     </p>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="col-span-full text-center py-12">
-                <div className="text-6xl mb-4">📅</div>
-                <p className="text-xl text-gray-500 mb-2">No upcoming matches scheduled</p>
-                <p className="text-gray-400">Stay tuned for exciting cricket fixtures!</p>
+              <div className="col-span-full text-center py-8">
+                <p className="text-lg text-gray-500 dark:text-gray-400">No upcoming matches scheduled</p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Stay tuned for exciting cricket fixtures!</p>
               </div>
             )}
           </div>
-        </section>        {/* Recent Results Section */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">✅</span>
-              </div>
+        </section>
+
+        {/* Recent Results Section */}
+        <section className="mb-10">
+          <div className="flex items-center justify-between mb-4 border-b-2 border-primary pb-2">
+            <h2 className="text-xl font-bold text-secondary dark:text-white flex items-center gap-2">
+              <span className="text-accent">✓</span>
               Recent Results
             </h2>
-            <span className="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
+            <span className="text-xs text-gray-500 dark:text-gray-400">
               Last 24 Hours
             </span>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {EndedMatches.length > 0 ? (
               EndedMatches.map((match, index) => (
                 <Link key={match.match_id} href={`/match/${match.match_id}`}>
-                  <div className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 hover:border-green-200">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                        FINISHED
+                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-200 p-4 border border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="bg-secondary dark:bg-gray-600 text-white text-xs font-semibold px-2 py-0.5 rounded">
+                        RESULT
                       </span>
-                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                     </div>
                     
-                    <div className="text-center mb-4">
-                      <h3 className="text-sm font-bold text-green-600 bg-green-50 rounded-lg px-3 py-1 inline-block">
+                    <div className="text-center mb-3">
+                      <h3 className="text-xs font-semibold text-primary dark:text-accent-light">
                         {match.series_name}
                       </h3>
-                      <p className="text-gray-500 text-xs mt-2 flex items-center justify-center gap-1">
-                        📍 {match.venue}
+                      <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
+                        {match.venue}
                       </p>
                     </div>
                     
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <div className="text-left flex-1">
-                          <h3 className="text-lg font-bold text-gray-800 mb-1">
+                          <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                             {match.teama_display_name}
                           </h3>
                           {match.scores
@@ -382,25 +368,21 @@ const HomePage = async () => {
                                 score.team_display_name === match.teama_display_name
                             )
                             .map((score, index) => (
-                              <div key={index} className="space-y-1">
-                                <p className="text-xl font-bold text-gray-700">
+                              <div key={index}>
+                                <p className="text-lg font-bold text-secondary dark:text-white">
                                   {score.team_runs}/{score.team_wickets}
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                  ({score.team_overs} overs)
+                                  <span className="text-xs font-normal text-gray-500 ml-1">({score.team_overs})</span>
                                 </p>
                               </div>
                             ))}
                         </div>
                         
-                        <div className="mx-4 text-center">
-                          <div className="w-10 h-10 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                            VS
-                          </div>
+                        <div className="mx-3 text-center">
+                          <span className="text-xs font-bold text-gray-400">vs</span>
                         </div>
                         
                         <div className="text-right flex-1">
-                          <h3 className="text-lg font-bold text-gray-800 mb-1">
+                          <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                             {match.teamb_display_name}
                           </h3>
                           {match.scores
@@ -409,12 +391,10 @@ const HomePage = async () => {
                                 score.team_display_name === match.teamb_display_name
                             )
                             .map((score, index) => (
-                              <div key={index} className="space-y-1">
-                                <p className="text-xl font-bold text-gray-700">
+                              <div key={index}>
+                                <p className="text-lg font-bold text-secondary dark:text-white">
                                   {score.team_runs}/{score.team_wickets}
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                  ({score.team_overs} overs)
+                                  <span className="text-xs font-normal text-gray-500 ml-1">({score.team_overs})</span>
                                 </p>
                               </div>
                             ))}
@@ -422,8 +402,8 @@ const HomePage = async () => {
                       </div>
                     </div>
                     
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <p className="text-center text-sm font-medium text-green-600 bg-green-50 rounded-lg py-2">
+                    <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-600">
+                      <p className="text-center text-xs font-medium text-primary dark:text-accent-light">
                         {match.match_result}
                       </p>
                     </div>
@@ -431,10 +411,9 @@ const HomePage = async () => {
                 </Link>
               ))
             ) : (
-              <div className="col-span-full text-center py-12">
-                <div className="text-6xl mb-4">🏆</div>
-                <p className="text-xl text-gray-500 mb-2">No recent results available</p>
-                <p className="text-gray-400">Check back for match results!</p>
+              <div className="col-span-full text-center py-8">
+                <p className="text-lg text-gray-500 dark:text-gray-400">No recent results available</p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Check back for match results!</p>
               </div>
             )}
           </div>

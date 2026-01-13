@@ -78,12 +78,13 @@ const PlayerPage = async ({ params }) => {
 
   if (!player) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
-        <div className="text-center bg-white dark:bg-gray-800 p-12 rounded-2xl shadow-xl">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Player Not Found</h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">The player you're looking for doesn't exist.</p>          <Link 
+      <div className="min-h-screen bg-gray-50 dark:bg-dark flex items-center justify-center">
+        <div className="text-center bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Player Not Found</h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">The player you're looking for doesn't exist.</p>
+          <Link 
             href="/players" 
-            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded font-medium transition-colors"
           >
             <IoArrowBack className="w-4 h-4" />
             Back to Players
@@ -108,26 +109,22 @@ const PlayerPage = async ({ params }) => {
   };
 
   const StatCard = ({ icon: Icon, title, value, subtitle, color = "blue" }) => (
-    <div className={`bg-gradient-to-br from-${color}-50 to-${color}-100 dark:from-${color}-900/20 dark:to-${color}-800/20 p-6 rounded-xl border border-${color}-200 dark:border-${color}-800`}>
-      <div className="flex items-center gap-3 mb-2">
-        <div className={`p-2 rounded-lg bg-${color}-500/10 dark:bg-${color}-400/10`}>
-          <Icon className={`w-5 h-5 text-${color}-600 dark:text-${color}-400`} />
-        </div>
-        <h3 className="font-medium text-gray-700 dark:text-gray-300">{title}</h3>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700">
+      <div className="flex items-center gap-2 mb-2">
+        <Icon className="w-4 h-4 text-primary" />
+        <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</h3>
       </div>
-      <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{value}</div>
-      {subtitle && <div className="text-sm text-gray-600 dark:text-gray-400">{subtitle}</div>}
+      <div className="text-xl font-bold text-gray-900 dark:text-white">{value}</div>
+      {subtitle && <div className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</div>}
     </div>
   );
 
   const StatsTable = ({ title, icon: Icon, data, type }) => (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-6">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-white/10">
-            <Icon className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="text-xl font-bold text-white">{title}</h3>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden border border-gray-200 dark:border-gray-700">
+      <div className="bg-primary px-4 py-3">
+        <div className="flex items-center gap-2">
+          <Icon className="w-5 h-5 text-white" />
+          <h3 className="text-lg font-bold text-white">{title}</h3>
         </div>
       </div>
       
@@ -135,19 +132,19 @@ const PlayerPage = async ({ params }) => {
         <table className="w-full">
           <thead className="bg-gray-50 dark:bg-gray-700">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Format</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Matches</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Innings</th>
+              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">Format</th>
+              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">Mat</th>
+              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">Inn</th>
               {type === 'batting' ? (
                 <>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Runs</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Average</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Strike Rate</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">50s/100s</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">Runs</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">Avg</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">SR</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">50s/100s</th>
                 </>
               ) : (
                 <>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Wickets</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white">Wkts</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Average</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Economy</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">Strike Rate</th>
@@ -230,76 +227,69 @@ const PlayerPage = async ({ params }) => {
   const totalCenturies = battingStats.reduce((sum, format) => sum + (parseInt(format.overall?.batting_record?.hundreds) || 0), 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex items-start justify-between mb-8">
+      <div className="bg-primary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-start justify-between mb-6">
             <Link 
               href="/players" 
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 border border-white/20"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded font-medium transition-colors text-sm"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Players
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
             {/* Player Image */}
             <div className="lg:col-span-1">
               <div className="relative">
-                <div className="w-80 h-80 mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="w-64 h-64 mx-auto bg-white/10 rounded-lg p-4">
                   <img
                     src={imageUrl}
                     alt={player.profile?.fullname || "Player"}
-                    className="w-full h-full object-contain rounded-xl"
-                   
+                    className="w-full h-full object-contain rounded"
                   />
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-yellow-400 text-yellow-900 p-3 rounded-full shadow-lg">
-                  <Star className="w-6 h-6" />
                 </div>
               </div>
             </div>
 
             {/* Player Info */}
             <div className="lg:col-span-2 text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+              <h1 className="text-2xl md:text-4xl font-bold mb-3">
                 {player.profile?.fullname || "Unknown Player"}
               </h1>
               
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                  <Globe className="w-5 h-5" />
-                  <span className="font-medium">
-                    {player.profile?.nationality || "Unknown Country"}
-                  </span>
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded text-sm">
+                  <Globe className="w-4 h-4" />
+                  <span>{player.profile?.nationality || "Unknown Country"}</span>
                 </div>
                 {player.profile?.nationality_short_code && (
-                  <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 font-bold">
+                  <div className="bg-white/10 px-3 py-1.5 rounded font-bold text-sm">
                     {player.profile.nationality_short_code}
                   </div>
                 )}
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div className="text-center bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-                  <div className="text-2xl font-bold mb-1">{totalMatches}</div>
-                  <div className="text-sm text-blue-100">Matches</div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="text-center bg-white/10 p-3 rounded">
+                  <div className="text-xl font-bold">{totalMatches}</div>
+                  <div className="text-xs text-white/70">Matches</div>
                 </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-                  <div className="text-2xl font-bold mb-1">{totalRuns.toLocaleString()}</div>
-                  <div className="text-sm text-blue-100">Runs</div>
+                <div className="text-center bg-white/10 p-3 rounded">
+                  <div className="text-xl font-bold">{totalRuns.toLocaleString()}</div>
+                  <div className="text-xs text-white/70">Runs</div>
                 </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-                  <div className="text-2xl font-bold mb-1">{totalWickets}</div>
-                  <div className="text-sm text-blue-100">Wickets</div>
+                <div className="text-center bg-white/10 p-3 rounded">
+                  <div className="text-xl font-bold">{totalWickets}</div>
+                  <div className="text-xs text-white/70">Wickets</div>
                 </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-                  <div className="text-2xl font-bold mb-1">{totalCenturies}</div>
-                  <div className="text-sm text-blue-100">Centuries</div>
+                <div className="text-center bg-white/10 p-3 rounded">
+                  <div className="text-xl font-bold">{totalCenturies}</div>
+                  <div className="text-xs text-white/70">Centuries</div>
                 </div>
               </div>
             </div>
@@ -307,11 +297,11 @@ const PlayerPage = async ({ params }) => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Career Highlights */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Career Highlights</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Career Highlights</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <StatCard
               icon={Trophy}
               title="Total Matches"
@@ -368,19 +358,17 @@ const PlayerPage = async ({ params }) => {
 
         {/* Player Biography */}
         {player.profile?.writeup && (
-          <div className="mt-12">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-              <div className="bg-gradient-to-r from-green-500 to-teal-600 p-6">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-white/10">
-                    <Calendar className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Player Biography</h3>
+          <div className="mt-8">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden border border-gray-200 dark:border-gray-700">
+              <div className="bg-secondary px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-white" />
+                  <h3 className="text-lg font-bold text-white">Player Biography</h3>
                 </div>
               </div>
-              <div className="p-8">
+              <div className="p-6">
                 <div 
-                  className="prose prose-gray dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed"
+                  className="prose prose-sm prose-gray dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
                   dangerouslySetInnerHTML={{ __html: player.profile.writeup }}
                 />
               </div>

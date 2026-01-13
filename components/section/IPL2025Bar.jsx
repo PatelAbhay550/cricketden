@@ -47,19 +47,19 @@ const IPL2025Bar = async () => {
   }
 
   return  (
-    <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-700 rounded-2xl shadow-xl overflow-hidden">
+    <div className="bg-primary rounded-lg shadow overflow-hidden">
       {/* Header */}
-      <div className="bg-black/20 px-6 py-4">
+      <div className="bg-black/10 px-4 py-3">
         <IPL2025TopBar/>
       </div>
 
       {/* Upcoming Matches */}
-      <div className="p-6">
-        <h3 className="text-white text-xl font-bold mb-4 flex items-center gap-2">
-          🏏 IPL 2025 - Upcoming Matches
+      <div className="p-4">
+        <h3 className="text-white text-lg font-bold mb-3 flex items-center gap-2">
+          IPL 2025 - Upcoming Matches
         </h3>
         <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex space-x-4 pb-2">
+          <div className="flex space-x-3 pb-2">
             {matchData.map((match) => {
               const firstColor = getTeamColor(match.FirstBattingTeamName);
               const secondColor = getTeamColor(match.SecondBattingTeamName);
@@ -67,20 +67,20 @@ const IPL2025Bar = async () => {
               return (
                 <div
                   key={match.MatchID}
-                  className="bg-white rounded-xl p-4 min-w-[280px] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
+                  className="bg-white rounded-lg p-3 min-w-[260px] shadow hover:shadow-md transition-all duration-200 border border-gray-100"
                 >
                   {/* Teams */}
-                  <div className="flex justify-between items-center mb-3">
-                    <div className="flex items-center space-x-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="flex items-center space-x-2">
                       <div
-                        className="w-12 h-12 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg"
+                        className="w-10 h-10 text-white rounded-full flex items-center justify-center font-bold text-xs shadow"
                         style={{ backgroundColor: firstColor }}
                       >
                         {match.FirstBattingTeamCode}
                       </div>
-                      <span className="text-lg font-bold text-gray-600">vs</span>
+                      <span className="text-sm font-bold text-gray-500">vs</span>
                       <div
-                        className="w-12 h-12 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg"
+                        className="w-10 h-10 text-white rounded-full flex items-center justify-center font-bold text-xs shadow"
                         style={{ backgroundColor: secondColor }}
                       >
                         {match.SecondBattingTeamCode}
@@ -89,18 +89,15 @@ const IPL2025Bar = async () => {
                   </div>
                   
                   {/* Match Details */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
-                      📅 {match.MatchDateNew}
+                  <div className="space-y-1 text-sm">
+                    <div className="text-gray-700 font-medium">
+                      {match.MatchDateNew} • {match.MatchTime}
                     </div>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
-                      ⏰ {match.MatchTime}
-                    </div>
-                    <div className="text-xs text-purple-600 font-medium bg-purple-50 rounded-lg px-2 py-1">
+                    <div className="text-xs text-primary font-medium">
                       {match.MatchName}
                     </div>
-                    <div className="text-xs text-gray-600 flex items-center gap-1">
-                      📍 {match.GroundName}
+                    <div className="text-xs text-gray-500">
+                      {match.GroundName}
                     </div>
                   </div>
                 </div>
