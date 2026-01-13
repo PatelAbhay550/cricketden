@@ -1,8 +1,7 @@
 {
+  "/match/[match]/page": "app/match/[match]/page.js",
   "/rankings/page": "app/rankings/page.js",
   "/rankings/teams/page": "app/rankings/teams/page.js",
-  "/rankings/all-rounders/page": "app/rankings/all-rounders/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/rankings/bowlers/page": "app/rankings/bowlers/page.js",
-  "/match/[match]/page": "app/match/[match]/page.js"
+  "/rankings/all-rounders/page": "app/rankings/all-rounders/page.js"
 }

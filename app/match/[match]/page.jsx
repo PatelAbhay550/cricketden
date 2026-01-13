@@ -230,7 +230,7 @@ const page = async ({ params }) => {
           </div>
           <div className="p-4 space-y-4">
             {match.scores.map((inning, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border-l-4 border-primary">
+              <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 ">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-lg font-bold text-gray-800 dark:text-white">
                     {inning.team_name}
