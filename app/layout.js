@@ -8,6 +8,7 @@ import MenuHome from "@/components/MenuHome";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL('https://www.cricketden.live'), 
   title: "CricketDen - Latest Cricket Score and Analysis",
   description:
     "Cricket live Score by Abhay Patel. Get latest cricket score, Cricket Schedule, Upcoming Cricket tour details",
@@ -34,5 +35,6 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
 
 
